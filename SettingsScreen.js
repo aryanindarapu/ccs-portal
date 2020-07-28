@@ -26,7 +26,6 @@ export default class SettingsScreen extends React.Component {
 
   componentWillUnmount() {
     // console.log("unmounted settings screen")
-    console.log(this.state.dataUp)
     pushData(this.state.dataUp, this.state.schools)
   }
 
@@ -61,28 +60,28 @@ export default class SettingsScreen extends React.Component {
     if (newSchool[0].checked) {
       switch(newSchool[0].id) {
         case 'chs':
-          this.setState({dataUp: [...this.state.dataUp, {
+          this.setState({dataUp: [{
             id: 'chs',
             path: require('./assets/chs.png'),
             name: 'Carmel High School',
             func: () => alert('Pressed 1:4!')
-          }]})
+          }, ...this.state.dataUp]})
           break
         case 'crms':
-          this.setState({dataUp: [...this.state.dataUp, {
+          this.setState({dataUp: [{
             id: 'crms',
             path: require('./assets/creekside.png'),
             name: 'Creekside Middle \nSchool',
             func: () => alert('Pressed 1:4!')
-          }]})
+          }, ...this.state.dataUp]})
           break
         case 'cams':
-          this.setState({dataUp: [...this.state.dataUp, {
+          this.setState({dataUp: [{
             id: 'cams',
             path: require('./assets/carmel.png'),
             name: 'Carmel Middle \nSchool',
             func: () => alert('Pressed 1:4!')
-          }]})
+          }, ...this.state.dataUp]})
           break
         case 'clms':
           this.setState({dataUp: [...this.state.dataUp, {
@@ -90,7 +89,7 @@ export default class SettingsScreen extends React.Component {
             path: require('./assets/clay.jpg'),
             name: 'Clay Middle School',
             func: () => alert('Pressed 1:4!')
-          }]})
+          }, ...this.state.dataUp]})
           break
         default:
           break

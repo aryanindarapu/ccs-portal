@@ -6,10 +6,6 @@ export let dataUp = [
   }
 ]
 
-export const pullData = () => {
-  return dataUp
-}
-
 export const dataDown = [
   {
     path: require('./assets/canvas.png'),
@@ -58,7 +54,9 @@ export let schools = [
 
 export const pushData = (data, school) => {
   dataUp = data
-  console.log(dataUp)
   schools = school
-  console.log(schools)
+}
+
+export const pullData = () => {
+  return dataUp
 }

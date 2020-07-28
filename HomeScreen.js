@@ -1,10 +1,10 @@
 import React from 'react';
-import { Platform, StyleSheet, Text, View, ScrollView, Dimensions, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Image, TouchableOpacity } from 'react-native';
 import Constants from 'expo-constants';
 import Carousel from 'react-native-snap-carousel';
 import AppLink from 'react-native-app-link';
 
-import { dataUp, dataDown } from './IconData';
+import { dataUp, dataDown, pullData } from './IconData';
 
 const SLIDER_WIDTH = Dimensions.get('window').width;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.6);
@@ -46,6 +46,8 @@ export default class HomeScreen extends React.Component {
       </View>
     )
   }
+
+  
 
   render() {
     return (
