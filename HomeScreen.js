@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Image, TouchableOpacity, Linking } from 'react-native';
 import Constants from 'expo-constants';
 import Carousel from 'react-native-snap-carousel';
 import AppLink from 'react-native-app-link';
@@ -24,15 +24,23 @@ export default class HomeScreen extends React.Component {
   }
 
   componentDidMount() {
-    // console.log("mounted")
+    this._dataPull = this.props.navigation.addListener('state', () => {
+      this.setState({dataUp: pullData()})
+    })
+  }
+
+  componentWillUnmount() {
+    this._dataPull()
   }
 
   iconClicked = data => {
     if (data.id == 'add') {
       return () => this.props.navigation.navigate('SettingsScreen')
       // can use maybeopenurl here (easier)
-    } else {
+    } else if (data.id == 'app') {
       return data.func
+    } else {
+      return () => Linking.openURL(data.url)
     }
   }
 
@@ -47,9 +55,12 @@ export default class HomeScreen extends React.Component {
     )
   }
 
-  
-
   render() {
+    this.props.navigation.addListener('transitionStart', (e) => {
+      console.log("testing")
+      this.setState({dataUp: pullData()})
+    })
+
     return (
       <View style={styles.container}>
         <Carousel
