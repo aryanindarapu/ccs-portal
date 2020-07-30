@@ -9,14 +9,15 @@ import { dataUp, schools, pushData } from './IconData';
 import { pullData } from './HomeScreen';
 
 const SchoolSwitch = props => (
-  <View style = {styles.container}>
+  <View style = {styles.switchContainer}>
+    <Text style={styles.text}>{props.schools.name}</Text>
     <Switch 
+      style={styles.switch}
       value={props.schools.checked}
       onValueChange = {props.onToggle}
       trackColor={{ false: "#fff", true: "#81b0ff" }}
       ios_backgroundColor="#3e3e3e"
     />
-    <Text style={styles.text}>Testing School Name</Text>
   </View>
 )
 
@@ -256,9 +257,9 @@ export default class SettingsScreen extends React.Component {
         style={[styles.content, isActive ? styles.active : styles.inactive]}
         transition="backgroundColor"
       >
-        <Animatable.Text animation={isActive ? 'bounceIn' : undefined}>
+        {/* <Animatable.Text animation={isActive ? 'bounceIn' : undefined}> */}
           {section.content}
-        </Animatable.Text>
+        {/* </Animatable.Text> */}
       </Animatable.View>
     );
   }
@@ -290,6 +291,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingTop: Constants.statusBarHeight,
   },
+  switchContainer: {
+    alignItems: "center",
+    flexDirection:"row"
+  },
+  switch: {
+    alignItems: "baseline"
+  },
   title: {
     textAlign: 'center',
     fontSize: 24,
@@ -317,7 +325,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 16,
-    color: '#fac805',
-    textAlign: 'center'
+    color: 'black',
+    // textAlign: 'left'
   }
 });

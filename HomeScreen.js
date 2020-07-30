@@ -11,8 +11,7 @@ import { dataUp, dataDown } from './IconData';
 const STORAGE_KEY = '@save-dataUp'
 
 const SLIDER_WIDTH = Dimensions.get('window').width;
-const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.6);
-const ITEM_HEIGHT = Math.round(ITEM_WIDTH * 3 / 4);
+const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.5);
 
 const activeOpacity = 0.5
 
@@ -93,6 +92,7 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <Text style={styles.title}>Welcome Carmel Clay Schools Parents!</Text>
         <Carousel
           data={this.state.dataUp}
           layout={'default'}
@@ -127,14 +127,19 @@ const styles = StyleSheet.create({
     paddingTop: Constants.statusBarHeight,
   },
   images: {
-    width: SLIDER_WIDTH * 0.5,
-    height: SLIDER_WIDTH * 0.5,
+    width: SLIDER_WIDTH * 0.4,
+    height: SLIDER_WIDTH * 0.4,
     borderRadius: 50
   },
   text: {
     fontSize: 20,
-    fontWeight: 'bold',
     textAlign: 'center',
-    fontFamily: 'System'
+    fontFamily: 'System',
+    paddingTop: 10
+  },
+  title: {
+    textAlign: 'center',
+    fontSize: 30,
+    fontWeight: '300'
   }
 });

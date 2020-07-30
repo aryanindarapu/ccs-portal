@@ -18,13 +18,14 @@ function HomeStack() {
         name="HomeScreen"
         component={HomeScreen}
         options = {({ navigation }) => ({ 
-          title: 'CCS Parents',
+          title: 'Home',
           headerStyle: {
-            backgroundColor: "#005cb0"
+            backgroundColor: "#fff"
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
-            fontWeight: 'bold'
+            fontWeight: 'bold',
+            color: 'black'
           },
           headerRight: () => (<Button title="Edit Schools" onPress={() => {navigation.navigate('SettingsScreen')}} />)
         })}
