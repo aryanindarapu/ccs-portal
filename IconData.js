@@ -1,12 +1,12 @@
 export let dataUp = [
   {
-    id: 'ccs',
+    key: 'ccs',
     path: require('./assets/ccs.jpg'),
     name: 'Carmel Clay \nSchools',
     url: 'https://www.ccs.k12.in.us/'
   },
   {
-    id: 'add',
+    key: 'add',
     path: require('./assets/add.png'),
     name: 'Add Schools',
   }
@@ -14,104 +14,119 @@ export let dataUp = [
 
 export const dataDown = [
   {
-    id: 'app',
+    key: 'app',
     path: require('./assets/canvas.png'),
     name: 'Canvas Parent',
-    func: () => alert('Pressed 2:1!')
+    url: ''
   }, 
   {
-    id: 'app',
+    key: 'app',
     path: require('./assets/powerschool.jpg'),
     name: 'PowerSchool',
-    func: () => alert('Pressed 2:2!')
+    url: ''
   }, 
   {
-    id: 'app',
+    key: 'app',
     path: require('./assets/stopit.png'),
     name: 'STOPit',
-    func: () => alert('Pressed 2:3!')
+    url: ''
   }, 
   {
-    id: 'app',
+    key: 'app',
     path: require('./assets/remind.png'),
     name: 'Remind',
-    func: () => alert('Pressed 2:4!')
+    url: ''
   }
 ]
 
 export let schools = [
   {
-    id: 'chs',
+    key: 'chs',
+    schoolType: 'hs',
     name: 'Carmel High School',
     checked: false
   },
   {
-    id: 'crms',
+    key: 'crms',
+    schoolType: 'ms',
     name: 'Creekside Middle School',
     checked: false
   },
   {
-    id: 'cams',
+    key: 'cams',
+    schoolType: 'ms',
     name: 'Carmel Middle School',
     checked: false
   },
   {
-    id: 'clms',
+    key: 'clms',
+    schoolType: 'ms',
     name: 'Clay Middle School',
     checked: false
   },
   {
-    id: 'ce',
+    key: 'ce',
+    schoolType: 'es',
     name: 'Carmel Elementary School',
     checked: false
   },
   {
-    id: 'cte',
+    key: 'cte',
+    schoolType: 'es',
     name: 'Cherry Tree Elementary School',
     checked: false
   },
   {
-    id: 'cwe',
+    key: 'cwe',
+    schoolType: 'es',
     name: 'College Wood Elementary School',
     checked: false
   },
   {
-    id: 'fde',
+    key: 'fde',
+    schoolType: 'es',
     name: 'Forest Dale Elementary School',
     checked: false
   },
   {
-    id: 'mte',
+    key: 'mte',
+    schoolType: 'es',
     name: 'Mohawk Trails Elementary School',
     checked: false
   },
   {
-    id: 'ope',
+    key: 'ope',
+    schoolType: 'es',
     name: 'Orchard Park Elementary School',
     checked: false
   },
   {
-    id: 'pte',
+    key: 'pte',
+    schoolType: 'es',
     name: 'Praire Trace Elementary School',
     checked: false
   },
   {
-    id: 'sre',
+    key: 'sre',
+    schoolType: 'es',
     name: 'Smoky Row Elementary School',
     checked: false
   },
   {
-    id: 'tme',
+    key: 'tme',
+    schoolType: 'es',
     name: 'Towne Meadow Elementary School',
     checked: false
   },
   {
-    id: 'wce',
+    key: 'wce',
+    schoolType: 'es',
     name: 'West Clay Elementary School',
     checked: false
   },
   {
-    id: 'we',
+    key: 'we',
+    schoolType: 'es',
     name: 'Woodbrook Elementary School',
     checked: false
   },
@@ -120,8 +135,4 @@ export let schools = [
 export const pushData = (data, school) => {
   dataUp = data
   schools = school
-}
-
-export const pullData = () => {
-  return dataUp
 }

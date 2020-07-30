@@ -1,8 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, ScrollView, View } from 'react-native';
+import { StyleSheet, Text, ScrollView, View, TouchableOpacity } from 'react-native';
 import { Switch } from 'react-native-gesture-handler';
+import Constants from 'expo-constants';
+import * as Animatable from 'react-native-animatable';
+import Accordion from 'react-native-collapsible/Accordion';
 
-import { dataUp, schools, pushData } from './IconData'
+import { dataUp, schools, pushData } from './IconData';
+import { pullData } from './HomeScreen';
 
 const SchoolSwitch = props => (
   <View style = {styles.container}>
@@ -12,54 +16,92 @@ const SchoolSwitch = props => (
       trackColor={{ false: "#fff", true: "#81b0ff" }}
       ios_backgroundColor="#3e3e3e"
     />
-    <Text>{props.schools.name}</Text>
+    <Text style={styles.text}>Testing School Name</Text>
   </View>
 )
-
-const dataPushed = []
 
 export default class SettingsScreen extends React.Component {
   state = {
     dataUp,
-    schools
+    schools,
+    activeSections: [],
   }
 
+  getContent = () => {
+    return([
+      {
+        title: 'High Schools',
+        content: 
+          this.state.schools.filter(data => data.schoolType == 'hs').map(data => (
+            <SchoolSwitch 
+              onToggle={() => this.toggleTodo(data)}
+              schools={data}
+            />)
+          )          
+      },
+      {
+        title: 'Middle Schools',
+        content:
+            this.state.schools.filter(data => data.schoolType == 'ms').map(data => (
+              <SchoolSwitch 
+                onToggle={() => this.toggleTodo(data)}
+                schools={data}
+              />)
+            ),
+      },
+      {
+        title: 'Elementary Schools',
+        content:
+            this.state.schools.filter(data => data.schoolType == 'es').map(data => (
+              <SchoolSwitch 
+                style={styles.container}
+                onToggle={() => this.toggleTodo(data)}
+                schools={data}
+              />)
+            ),
+      },
+    ])
+  }
+
+  // Functions for sending and pulling data
   componentWillUnmount() {
-    // console.log("unmounted settings screen")
+    pullData(this.state.dataUp) 
     pushData(this.state.dataUp, this.state.schools)
   }
 
   // Removes data from dataUp
-  removeData(id) {
+  removeData(key) {
     this.setState({
-      dataUp: this.state.dataUp.filter(data => data.id !== id)
+      dataUp: this.state.dataUp.filter(data => data.key !== key)
     })
   }
 
-  // Gets id in school and adds data to dataUp
+  // Gets key in school and adds data to dataUp
   toggleTodo(school) {
+    console.log(school)
     this.setState({
       schools: this.state.schools.map(data => {
-        if (data.id !== school.id) return data
+        if (data.key !== school.key) return data
         return {
-          id: data.id,
+          key: data.key,
+          schoolType: data.schoolType,
           name: data.name,
           checked: !data.checked
         }
       })
     }, () => this.updateData(school))
   }
-    
+
   updateData(school) {
     let newSchool = this.state.schools.filter(obj => {
-      return obj.id === school.id
+      return obj.key === school.key
     })
 
     if (newSchool[0].checked) {
-      switch(newSchool[0].id) {
+      switch(newSchool[0].key) {
         case 'chs':
           this.setState({dataUp: [{
-            id: 'chs',
+            key: 'chs',
             path: require('./assets/chs.png'),
             name: 'Carmel High School',
             url: 'https://www.ccs.k12.in.us/chs'
@@ -67,7 +109,7 @@ export default class SettingsScreen extends React.Component {
           break
         case 'crms':
           this.setState({dataUp: [{
-            id: 'crms',
+            key: 'crms',
             path: require('./assets/creekside.png'),
             name: 'Creekside Middle \nSchool',
             url: 'https://www.ccs.k12.in.us/crm'
@@ -75,7 +117,7 @@ export default class SettingsScreen extends React.Component {
           break
         case 'cams':
           this.setState({dataUp: [{
-            id: 'cams',
+            key: 'cams',
             path: require('./assets/carmel.png'),
             name: 'Carmel Middle \nSchool',
             url: 'https://www.ccs.k12.in.us/cam'
@@ -83,7 +125,7 @@ export default class SettingsScreen extends React.Component {
           break
         case 'clms':
           this.setState({dataUp: [{
-            id: 'clms',
+            key: 'clms',
             path: require('./assets/clay.jpg'),
             name: 'Clay Middle School',
             url: 'https://www.ccs.k12.in.us/clm'
@@ -91,7 +133,7 @@ export default class SettingsScreen extends React.Component {
           break
         case 'ce':
           this.setState({dataUp: [{
-            id: 'ce',
+            key: 'ce',
             path: require('./assets/ce.png'),
             name: 'Carmel Elementary \nSchool',
             url: 'https://www.ccs.k12.in.us/ces'
@@ -99,7 +141,7 @@ export default class SettingsScreen extends React.Component {
           break
         case 'cte':
           this.setState({dataUp: [{
-            id: 'cte',
+            key: 'cte',
             path: require('./assets/cte.png'),
             name: 'Cherry Tree \nElementary School',
             url: 'https://www.ccs.k12.in.us/cte'
@@ -107,7 +149,7 @@ export default class SettingsScreen extends React.Component {
           break
         case 'cwe':
           this.setState({dataUp: [{
-            id: 'cwe',
+            key: 'cwe',
             path: require('./assets/cwe.png'),
             name: 'College Wood \nElementary School',
             url: 'https://www.ccs.k12.in.us/cwe'
@@ -115,7 +157,7 @@ export default class SettingsScreen extends React.Component {
           break
         case 'fde':
           this.setState({dataUp: [{
-            id: 'fde',
+            key: 'fde',
             path: require('./assets/fde.png'),
             name: 'Forest Dale \nElementary School',
             url: 'https://www.ccs.k12.in.us/fde'
@@ -123,7 +165,7 @@ export default class SettingsScreen extends React.Component {
           break
         case 'mte':
           this.setState({dataUp: [{
-            id: 'mte',
+            key: 'mte',
             path: require('./assets/mte.png'),
             name: 'Mohawk Trails \nElementary School',
             url: 'https://www.ccs.k12.in.us/mte'
@@ -131,7 +173,7 @@ export default class SettingsScreen extends React.Component {
           break
         case 'ope':
           this.setState({dataUp: [{
-            id: 'ope',
+            key: 'ope',
             path: require('./assets/ope.png'),
             name: 'Orchard Park \nElementary School',
             url: 'https://www.ccs.k12.in.us/ope'
@@ -139,7 +181,7 @@ export default class SettingsScreen extends React.Component {
           break
         case 'pte':
           this.setState({dataUp: [{
-            id: 'pte',
+            key: 'pte',
             path: require('./assets/pte.png'),
             name: 'Praire Trace \nElementary School',
             url: 'https://www.ccs.k12.in.us/pte'
@@ -147,7 +189,7 @@ export default class SettingsScreen extends React.Component {
           break
         case 'sre':
           this.setState({dataUp: [{
-            id: 'sre',
+            key: 'sre',
             path: require('./assets/sre.png'),
             name: 'Smoky Row \nElementary School',
             url: 'https://www.ccs.k12.in.us/sre'
@@ -155,7 +197,7 @@ export default class SettingsScreen extends React.Component {
           break
         case 'tme':
           this.setState({dataUp: [{
-            id: 'tme',
+            key: 'tme',
             path: require('./assets/tme.png'),
             name: 'Towne Meadow \nElementary School',
             url: 'https://www.ccs.k12.in.us/tme'
@@ -163,7 +205,7 @@ export default class SettingsScreen extends React.Component {
           break
         case 'wce':
           this.setState({dataUp: [{
-            id: 'wce',
+            key: 'wce',
             path: require('./assets/wce.png'),
             name: 'West Clay \nElementary School',
             url: 'https://www.ccs.k12.in.us/wce'
@@ -171,7 +213,7 @@ export default class SettingsScreen extends React.Component {
           break
         case 'we':
           this.setState({dataUp: [{
-            id: 'we',
+            key: 'we',
             path: require('./assets/we.png'),
             name: 'Woodbrook Elementary \nSchool',
             url: 'https://www.ccs.k12.in.us/wbe'
@@ -180,19 +222,62 @@ export default class SettingsScreen extends React.Component {
           break
       }
     } else {
-      this.removeData(newSchool[0].id)
+      this.removeData(newSchool[0].key)
     }
   }
 
+  // Functions for collapsible
+  toggleExpanded = () => {
+    this.setState({ collapsed: !this.state.collapsed });
+  };
+
+  setSections = sections => {
+    this.setState({
+      activeSections: sections.includes(undefined) ? [] : sections,
+    });
+  };
+
+  renderHeader = (section, _, isActive) => {
+    return (
+      <Animatable.View
+        duration={400}
+        style={[styles.header, isActive ? styles.active : styles.inactive]}
+        transition="backgroundColor"
+      >
+        <Text style={styles.headerText}>{section.title}</Text>
+      </Animatable.View>
+    );
+  };
+
+  renderContent(section, _, isActive) {
+    return (
+      <Animatable.View
+        duration={400}
+        style={[styles.content, isActive ? styles.active : styles.inactive]}
+        transition="backgroundColor"
+      >
+        <Animatable.Text animation={isActive ? 'bounceIn' : undefined}>
+          {section.content}
+        </Animatable.Text>
+      </Animatable.View>
+    );
+  }
+
   render() {
+    const { activeSections } = this.state;
+
     return (
       <ScrollView>
-        {this.state.schools.map(data => (
-          <SchoolSwitch 
-            onToggle={() => this.toggleTodo(data)}
-            schools={data}
-          />
-        ))}
+        <Text style={styles.title}>Accordion Example</Text>
+        <Accordion
+          activeSections={activeSections}
+          sections={this.getContent()}
+          touchableComponent={TouchableOpacity}
+          renderHeader={this.renderHeader}
+          renderContent={this.renderContent}
+          duration={400}
+          onChange={this.setSections}
+        />
       </ScrollView>
     );
   }
@@ -202,6 +287,37 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    paddingTop: Constants.statusBarHeight,
+  },
+  title: {
+    textAlign: 'center',
+    fontSize: 24,
+    fontWeight: '300',
+    marginBottom: 20,
+  },
+  header: {
+    backgroundColor: '#F5FCFF',
+    padding: 15,
+  },
+  headerText: {
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: '500',
+  },
+  content: {
+    padding: 20,
+    backgroundColor: '#fff',
+  },
+  active: {
+    backgroundColor: 'rgba(255,255,255,1)',
+  },
+  inactive: {
+    backgroundColor: 'rgba(245,252,255,1)',
+  },
+  text: {
+    fontSize: 16,
+    color: '#fac805',
+    textAlign: 'center'
   }
 });
