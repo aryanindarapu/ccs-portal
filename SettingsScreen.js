@@ -112,13 +112,11 @@ export default class SettingsScreen extends React.Component {
         style={[styles.header, isActive ? styles.active : styles.inactive]}
         transition="backgroundColor"
       >
-        <Text style={[styles.headerText, isActive ? styles.activeHeader : styles.inactiveHeader]} >
-          {section.title}
-        </Text>
+        <Text style={[styles.headerText, isActive ? styles.activeHeader : styles.inactiveHeader]}>{section.title}</Text>
         {isActive ?
           <Ionicons name="ios-arrow-up" size={24} color='white' style={[styles.icon, styles.activeHeader]} />
           :
-          <Ionicons name="ios-arrow-down" size={24} color='white' style={styles.icon, styles.inactiveHeader} />
+          <Ionicons name="ios-arrow-down" size={24} color='white' style={[styles.icon, styles.inactiveHeader]} />
         }
       </Animatable.View>
     );
@@ -169,8 +167,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#005cb0',
     padding: 15,
     flexDirection: "row",
-    flex: 1,
     alignItems: "center",
+    flex: 1,
   },
   headerText: {
     textAlign: 'left',
@@ -178,13 +176,14 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   icon: {
-    marginRight: "auto"
+    marginLeft: "auto"
   },
   content: {
     paddingLeft: 10,
     paddingRight: 10,
     paddingBottom: 10,
     backgroundColor: '#fff',
+    flex: 1,
   },
   active: {
     backgroundColor: '#fff',

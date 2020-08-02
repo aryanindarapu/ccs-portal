@@ -15,10 +15,6 @@ const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.5);
 
 const activeOpacity = 0.5
 
-// const openURL = () => {
-//   AppLink.maybeOpenURL(url, {"Canvas Parent", })
-// }
-
 export function pullData(data) {
   this.setState({dataUp: data})
 }
@@ -68,8 +64,8 @@ export default class HomeScreen extends React.Component {
     if (data.key == 'add') {
       return () => this.props.navigation.navigate('SettingsScreen')
     } else if (data.key == 'app') {
-      return () => AppLink.maybeOpenURL(data.url, { appName: "Canvas Parent", appStoreId: "com.powerschool.portal", playStoreId: "com.instructure.parentapp"}).then(() => {
-
+      return () => AppLink.maybeOpenURL(data.url, { appName: data.appName, appStoreId: data.appStoreId, playStoreId: data.playStoreId}).then(() => {
+        console.log("testing worked")
       }).catch((err) => {
         console.error(err)
       })

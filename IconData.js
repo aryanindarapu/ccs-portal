@@ -1,7 +1,7 @@
 export let dataUp = [
   {
     key: 'ccs',
-    path: require('./assets/ccs.jpg'),
+    path: require('./assets/schools/ccs.jpg'),
     name: 'Carmel Clay \nSchools',
     url: 'https://www.ccs.k12.in.us/'
   },
@@ -17,25 +17,46 @@ export const dataDown = [
     key: 'app',
     path: require('./assets/canvas.png'),
     name: 'Canvas Parent',
-    url: ''
+    url: 'https://apps.apple.com/us/app/canvas-parent/id1097996698',
+    appName: 'Canvas Parent',
+    appStoreId: '1097996698',
+    playStoreId: 'com.instructure.parentapp'
   }, 
   {
     key: 'app',
     path: require('./assets/powerschool.jpg'),
-    name: 'PowerSchool',
-    url: ''
+    name: 'PowerSchool \nMobile',
+    url: 'https://apps.apple.com/us/app/powerschool-mobile/id973741088',
+    appName: 'PowerSchool Mobile',
+    appStoreId: '973741088',
+    playStoreId: 'com.powerschool.portal'
+  },  
+  {
+    key: 'app',
+    path: require('./assets/ez.png'),
+    name: 'EZSchoolPay',
+    url: 'https://apps.apple.com/us/app/ezschoolpay/id642643721',
+    appName: 'EZSchoolPay',
+    appStoreId: '642643721',
+    playStoreId: 'com.harris.ezschoolpay'
   }, 
   {
     key: 'app',
     path: require('./assets/stopit.png'),
     name: 'STOPit',
-    url: ''
+    url: 'https://apps.apple.com/us/app/stopit-app/id719179764',
+    appName: 'STOPit',
+    appStoreId: '719179764',
+    playStoreId: 'com.stopitcyberbully.mobile'
   }, 
   {
     key: 'app',
     path: require('./assets/remind.png'),
     name: 'Remind',
-    url: ''
+    url: 'https://apps.apple.com/us/app/remind-school-communication/id522826277',
+    appName: 'Remind: School Communication',
+    appStoreId: '522826277',
+    playStoreId: 'com.remind101'
   }
 ]
 

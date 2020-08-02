@@ -26,4 +26,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: 'black',
   },
+  switch: {
+    marginLeft: 'auto'
+  }
 })
