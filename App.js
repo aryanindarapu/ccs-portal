@@ -2,12 +2,11 @@ import React from 'react';
 import { StyleSheet, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-// import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import HomeScreen from './HomeScreen';
-import SettingsScreen from './SettingsScreen';
+import HomeScreen from './screens/HomeScreen';
+import SettingsScreen from './screens/SettingsScreen';
+import SchoolInfoScreen from './screens/SchoolInfoScreen';
 
-// const Tabs = createBottomTabNavigator()
 const Stack = createStackNavigator()
 
 function HomeStack() {
@@ -29,6 +28,13 @@ function HomeStack() {
           headerRight: () => (<Button title="Edit Schools" onPress={() => {navigation.navigate('SettingsScreen')}} />)
         })}
       />
+      <Stack.Screen 
+        name="SchoolInfoScreen"
+        component={SchoolInfoScreen}
+        options = {{
+          title: 'School Info'
+        }}
+      />
       <Stack.Screen
         name="SettingsScreen"
         component={SettingsScreen}
@@ -39,37 +45,6 @@ function HomeStack() {
     </Stack.Navigator>
   )
 }
-
-/* Moving away from tab idea 
-function TabNav() {
-  return (
-    <Tabs.Navigator
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
-          let iconName
-
-          if (route.name === 'Home') {
-            iconName = focused
-              ? 'md-home'
-              : 'md-home';
-          } else if (route.name === 'Settings') {
-            iconName = focused ? 'md-settings' : 'md-settings';
-          }
-
-          // You can return any component that you like here!
-          return <Ionicons name={iconName} size={size} color={color} />;
-        },
-      })}
-      tabBarOptions={{
-        activeTintColor: '#0f64fa',
-        inactiveTintColor: 'gray',
-      }}
-    >
-      <Tabs.Screen name="Home" component={HomeStack} />
-      <Tabs.Screen name="Settings" component={SettingsScreen} />
-    </Tabs.Navigator>
-  )
-} */
 
 export default class App extends React.Component { 
   render() {

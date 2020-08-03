@@ -3,12 +3,8 @@ import { StyleSheet, Text, View, Dimensions, Image, TouchableOpacity, Linking } 
 import Constants from 'expo-constants';
 import Carousel from 'react-native-snap-carousel';
 import AppLink from 'react-native-app-link';
-import AsyncStorage from '@react-native-community/async-storage';
 
-import { dataUp, dataDown } from './IconData';
-
-// Saving Data
-const STORAGE_KEY = '@save-dataUp'
+import { dataUp, dataDown } from '../IconData';
 
 const SLIDER_WIDTH = Dimensions.get('window').width;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.5);
@@ -30,36 +26,6 @@ export default class HomeScreen extends React.Component {
     pullData = pullData.bind(this)
   }
 
-  componentDidMount() {
-    this.readData()
-  }
-
-  saveData = async (data) => {
-    try {
-      await AsyncStorage.setItem(STORAGE_KEY, data)
-      console.log("saving data")
-    } catch (error) {
-      alert(error.message)
-    }
-  }
-  
-  readData = async () => {
-    try {
-      const data = await AsyncStorage.getItem(STORAGE_KEY)
-
-      if (data !== null) {
-        alert('prev stored')
-      }
-      console.log("reading data")
-    } catch (error) {
-      alert('failed to fetch settings')
-    }
-  }
-  
-  onPullData = () => {
-    this.saveData()
-  }
-
   iconClicked = data => {
     if (data.key == 'add') {
       return () => this.props.navigation.navigate('SettingsScreen')
@@ -70,7 +36,7 @@ export default class HomeScreen extends React.Component {
         console.error(err)
       })
     } else {
-      return () => Linking.openURL(data.url)
+      return () => this.props.navigation.navigate("SchoolInfoScreen", {data: data})
     }
   }
 

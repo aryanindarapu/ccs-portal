@@ -4,9 +4,9 @@
     "slug": "ccs-parents",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/schools/ccs.jpg",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/schools/ccs.jpg",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

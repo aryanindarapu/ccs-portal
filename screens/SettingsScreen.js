@@ -4,17 +4,51 @@ import Constants from 'expo-constants';
 import * as Animatable from 'react-native-animatable';
 import Accordion from 'react-native-collapsible/Accordion';
 import { Ionicons } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-community/async-storage';
 
-import { dataUp, schools, pushData } from './IconData';
+import { dataUp, schools, pushData } from '../IconData';
 import { pullData } from './HomeScreen';
-import { dataUpdate } from './DataUpdateFuncs';
-import { SchoolSwitch } from './SchoolSwitch';
+import { dataUpdate } from '../DataUpdateFuncs';
+import { SchoolSwitch } from '../SchoolSwitch';
+
+// Saving Data
+const STORAGE_KEY = '@save-dataUp'
 
 export default class SettingsScreen extends React.Component {
   state = {
     dataUp,
     schools,
     activeSections: [],
+  }
+
+  componentDidMount() {
+    this.readData()
+  }
+
+  saveData = async () => {
+    try {
+      await AsyncStorage.setItem(STORAGE_KEY, this.state.dataUp)
+      console.log("saving data")
+    } catch (error) {
+      alert(error.message)
+    }
+  }
+  
+  readData = async () => {
+    try {
+      const data = await AsyncStorage.getItem(STORAGE_KEY)
+
+      if (data !== null) {
+        alert('prev stored')
+      }
+      console.log("reading data")
+    } catch (error) {
+      alert('failed to fetch settings')
+    }
+  }
+  
+  onPullData = () => {
+    this.saveData()
   }
 
   getContent = () => {
@@ -68,7 +102,6 @@ export default class SettingsScreen extends React.Component {
 
   // Gets key in school and adds data to dataUp
   toggleTodo(school) {
-    console.log(school)
     this.setState({
       schools: this.state.schools.map(data => {
         if (data.key !== school.key) return data
@@ -92,6 +125,8 @@ export default class SettingsScreen extends React.Component {
     } else {
       this.removeData(newSchool[0].key)
     }
+
+    // this.saveData()
   }
 
   // Functions for collapsible

@@ -24,8 +24,8 @@ export const dataDown = [
   }, 
   {
     key: 'app',
-    path: require('./assets/powerschool.jpg'),
-    name: 'PowerSchool \nMobile',
+    path: require('./assets/powerschool.png'),
+    name: 'PowerSchool',
     url: 'https://apps.apple.com/us/app/powerschool-mobile/id973741088',
     appName: 'PowerSchool Mobile',
     appStoreId: '973741088',
