@@ -3,7 +3,8 @@ export let dataUp = [
     key: 'ccs',
     path: require('./assets/schools/ccs.jpg'),
     name: 'Carmel Clay \nSchools',
-    url: 'https://www.ccs.k12.in.us/'
+    nameFormat: 'Carmel Clay Schools',
+    url: 'https://www.ccs.k12.in.us/',
   },
   {
     key: 'add',

@@ -31,9 +31,9 @@ function HomeStack() {
       <Stack.Screen 
         name="SchoolInfoScreen"
         component={SchoolInfoScreen}
-        options = {{
-          title: 'School Info'
-        }}
+        options = {({ route }) => ({
+          title: route.params.data.nameFormat
+        })}
       />
       <Stack.Screen
         name="SettingsScreen"
