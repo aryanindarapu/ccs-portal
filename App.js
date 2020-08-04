@@ -32,7 +32,7 @@ function HomeStack() {
         name="SchoolInfoScreen"
         component={SchoolInfoScreen}
         options = {({ route }) => ({
-          title: route.params.data.nameFormat
+          title: route.params.data.nameFormat.slice(-17) == "Elementary School" ? route.params.data.nameFormat.slice(0, -18) : route.params.data.nameFormat
         })}
       />
       <Stack.Screen

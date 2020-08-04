@@ -6,40 +6,79 @@ export function dataUpdate(newSchool) {
         path: require('./assets/schools/chs.png'),
         name: 'Carmel High \nSchool',
         nameFormat: 'Carmel High School',
-        url: 'https://www.ccs.k12.in.us/chs',
-        cal: 'https://www.ccs.k12.in.us/chs/about/calendar'
+        schoolInfo: {
+          color: '#ffc324',
+          url: 'https://www.ccs.k12.in.us/chs',
+          cal: 'https://www.ccs.k12.in.us/chs/about/calendar',
+          isWcOne: true,
+          wcOneUrl: 'https://www.ccs.k12.in.us/chs-lunch-menu',
+          isWcTwo: true,
+          wcTwoUrl: 'https://resources.finalsite.net/images/v1582720293/ccsk12inus/opbuyw9heer5b5bxoyh8/2019-2020CarmelHighSchoolClubs6.pdf'
+        },
       }
-    case 'crms':
+    case 'cam':
       return {
-        key: 'crms',
-        path: require('./assets/schools/creekside.png'),
-        name: 'Creekside Middle \nSchool',
-        nameFormat: 'Creekside Middle School',
-        url: 'https://www.ccs.k12.in.us/crm'
-      }
-    case 'cams':
-      return {
-        key: 'cams',
-        path: require('./assets/schools/carmel.png'),
+        key: 'cam',
+        path: require('./assets/schools/cam.png'),
         name: 'Carmel Middle \nSchool',
         nameFormat: 'Carmel Middle School',
-        url: 'https://www.ccs.k12.in.us/cam'
+        schoolInfo: {
+          color: '#3173b5',
+          url: 'https://www.ccs.k12.in.us/cam',
+          cal: 'https://www.ccs.k12.in.us/cam/about/calendar',
+          isWcOne: true,
+          wcOneUrl: 'https://www.ccs.k12.in.us/cam-lunch-menu',
+          isWcTwo: true,
+          wcTwoUrl: 'https://www.ccs.k12.in.us/cam/student-life'
+        },
       }
-    case 'clms':
+    case 'clm':
       return {
-        key: 'clms',
-        path: require('./assets/schools/clay.jpg'),
-        name: 'Clay Middle School',
+        key: 'clm',
+        path: require('./assets/schools/clm.jpg'),
+        name: 'Clay Middle \nSchool',
         nameFormat: 'Clay Middle School',
-        url: 'https://www.ccs.k12.in.us/clm'
+        schoolInfo: {
+          color: '#c5263a',
+          url: 'https://www.ccs.k12.in.us/clm',
+          cal: 'https://www.ccs.k12.in.us/clm/about/calendar',
+          isWcOne: true,
+          wcOneUrl: 'https://www.ccs.k12.in.us/clm-lunch-menu',          
+          isWcTwo: false,
+          wcTwoUrl: ''
+        },
       }
-    case 'ce':
+    case 'crm':
       return {
-        key: 'ce',
-        path: require('./assets/schools/ce.png'),
-        name: 'Carmel Elementary \nSchool',
+        key: 'crm',
+        path: require('./assets/schools/crm.png'),
+        name: 'Creekside Middle \nSchool',
+        nameFormat: 'Creekside Middle School',
+        schoolInfo: {
+          color: '#c9051b',
+          url: 'https://www.ccs.k12.in.us/crm',
+          cal: 'https://www.ccs.k12.in.us/crm/about/calendar',
+          isWcOne: true,
+          wcOneUrl: 'https://www.ccs.k12.in.us/crm-lunch-menu',          
+          isWcTwo: false,
+          wcTwoUrl: ''
+        },
+      }
+    case 'ces':
+      return {
+        key: 'ces',
+        path: require('./assets/schools/ces.jpg'),
+        name: 'Carmel \nElementary \nSchool',
         nameFormat: 'Carmel Elementary School',
-        url: 'https://www.ccs.k12.in.us/ces'
+        schoolInfo: {
+          color: '#065da9',
+          url: 'https://www.ccs.k12.in.us/ces',
+          cal: 'https://www.ccs.k12.in.us/ces/about/calendar',
+          isWcOne: true,
+          wcOneUrl: 'https://www.ccs.k12.in.us/ces-lunch-menu',          
+          isWcTwo: false,
+          wcTwoUrl: ''
+        },
       }
     case 'cte':
       return {
@@ -47,7 +86,15 @@ export function dataUpdate(newSchool) {
         path: require('./assets/schools/cte.png'),
         name: 'Cherry Tree \nElementary School',
         nameFormat: 'Cherry Tree Elementary School',
-        url: 'https://www.ccs.k12.in.us/cte'
+        schoolInfo: {
+          color: '#c0202f',
+          url: 'https://www.ccs.k12.in.us/cte',
+          cal: 'https://www.ccs.k12.in.us/cte/about/calendar',
+          isWcOne: true,
+          wcOneUrl: 'https://www.ccs.k12.in.us/cte-lunch-menu',
+          isWcTwo: false,
+          wcTwoUrl: ''
+        },
       }
     case 'cwe':
       return {
@@ -55,7 +102,15 @@ export function dataUpdate(newSchool) {
         path: require('./assets/schools/cwe.png'),
         name: 'College Wood \nElementary School',
         nameFormat: 'College Wood Elementary School',
-        url: 'https://www.ccs.k12.in.us/cwe'
+        schoolInfo: {
+          color: '#e82102',
+          url: 'https://www.ccs.k12.in.us/cwe',
+          cal: 'https://www.ccs.k12.in.us/cwe/about/calendar',
+          isWcOne: true,
+          wcOneUrl: 'https://www.ccs.k12.in.us/cwe-lunch-menu',
+          isWcTwo: false,
+          wcTwoUrl: ''
+        },
       }
     case 'fde':
       return {
@@ -63,15 +118,31 @@ export function dataUpdate(newSchool) {
         path: require('./assets/schools/fde.png'),
         name: 'Forest Dale \nElementary School',
         nameFormat: 'Forest Dale Elementary School',
-        url: 'https://www.ccs.k12.in.us/fde'
+        schoolInfo: {
+          color: '#065da9',
+          url: 'https://www.ccs.k12.in.us/fde',
+          cal: 'https://www.ccs.k12.in.us/fde/about/calendar',
+          isWcOne: true,
+          wcOneUrl: 'https://www.ccs.k12.in.us/fde-lunch-menu',
+          isWcTwo: false,
+          wcTwoUrl: ''
+        },
       }
     case 'mte':
       return {
         key: 'mte',
-        path: require('./assets/schools/mte.png'),
+        path: require('./assets/schools/mte.jpg'),
         name: 'Mohawk Trails \nElementary School',
         nameFormat: 'Mohawk Trails Elementary School',
-        url: 'https://www.ccs.k12.in.us/mte'
+        schoolInfo: {
+          color: '#065da9',
+          url: 'https://www.ccs.k12.in.us/mte',
+          cal: 'https://www.ccs.k12.in.us/mte/about/calendar',
+          isWcOne: true,
+          wcOneUrl: 'https://www.ccs.k12.in.us/mte-lunch-menu',
+          isWcTwo: false,
+          wcTwoUrl: ''
+        },
       }
       
     case 'ope':
@@ -80,7 +151,15 @@ export function dataUpdate(newSchool) {
         path: require('./assets/schools/ope.png'),
         name: 'Orchard Park \nElementary School',
         nameFormat: 'Orchard Park Elementary School',
-        url: 'https://www.ccs.k12.in.us/ope'
+        schoolInfo: {
+          color: '#dc0a39',
+          url: 'https://www.ccs.k12.in.us/ope',
+          cal: 'https://www.ccs.k12.in.us/ope/about/calendar',
+          isWcOne: true,
+          wcOneUrl: 'https://www.ccs.k12.in.us/ope-lunch-menu',
+          isWcTwo: false,
+          wcTwoUrl: ''
+        },
       }
     case 'pte':
       return {
@@ -88,7 +167,15 @@ export function dataUpdate(newSchool) {
         path: require('./assets/schools/pte.png'),
         name: 'Prairie Trace \nElementary School',
         nameFormat: 'Prairie Trace Elementary School',
-        url: 'https://www.ccs.k12.in.us/pte'
+        schoolInfo: {
+          color: '#0c49a2',
+          url: 'https://www.ccs.k12.in.us/pte',
+          cal: 'https://www.ccs.k12.in.us/pte/about/calendar',
+          isWcOne: true,
+          wcOneUrl: 'https://www.ccs.k12.in.us/pte-lunch-menu',
+          isWcTwo: false,
+          wcTwoUrl: ''
+        },
       }
     case 'sre':
       return {
@@ -96,15 +183,31 @@ export function dataUpdate(newSchool) {
         path: require('./assets/schools/sre.png'),
         name: 'Smoky Row \nElementary School',
         nameFormat: 'Smoky Row Elementary School',
-        url: 'https://www.ccs.k12.in.us/sre'
+        schoolInfo: {
+          color: '#e8122e',
+          url: 'https://www.ccs.k12.in.us/sre',
+          cal: 'https://www.ccs.k12.in.us/sre/about/calendar',
+          isWcOne: true,
+          wcOneUrl: 'https://www.ccs.k12.in.us/sre-lunch-menu',
+          isWcTwo: false,
+          wcTwoUrl: ''
+        },
       }
     case 'tme':
       return {
         key: 'tme',
-        path: require('./assets/schools/tme.png'),
+        path: require('./assets/schools/tme.jpg'),
         name: 'Towne Meadow \nElementary School',
         nameFormat: 'Towne Meadow Elementary School',
-        url: 'https://www.ccs.k12.in.us/tme'
+        schoolInfo: {
+          color: '#1a3365',
+          url: 'https://www.ccs.k12.in.us/tme',
+          cal: 'https://www.ccs.k12.in.us/tme/about/calendar',
+          isWcOne: true,
+          wcOneUrl: 'https://www.ccs.k12.in.us/tme-lunch-menu',
+          isWcTwo: false,
+          wcTwoUrl: ''
+        },
       }
     case 'wce':
       return {
@@ -112,15 +215,31 @@ export function dataUpdate(newSchool) {
         path: require('./assets/schools/wce.png'),
         name: 'West Clay \nElementary School',
         nameFormat: 'West Clay Elementary School',
-        url: 'https://www.ccs.k12.in.us/wce'
+        schoolInfo: {
+          color: '#dc101c',
+          url: 'https://www.ccs.k12.in.us/wce',
+          cal: 'https://www.ccs.k12.in.us/wce/about/calendar',
+          isWcOne: true,
+          wcOneUrl: 'https://www.ccs.k12.in.us/wce-lunch-menu',
+          isWcTwo: false,
+          wcTwoUrl: ''
+        },
       }
-    case 'we':
+    case 'wbe':
       return {
-        key: 'we',
-        path: require('./assets/schools/we.png'),
+        key: 'wbe',
+        path: require('./assets/schools/wbe.png'),
         name: 'Woodbrook Elementary \nSchool',
         nameFormat: 'Woodbrook Elementary School',
-        url: 'https://www.ccs.k12.in.us/wbe'
+        schoolInfo: {
+          color: '#065da9',
+          url: 'https://www.ccs.k12.in.us/wce',
+          cal: 'https://www.ccs.k12.in.us/wce/about/calendar',
+          isWcOne: true,
+          wcOneUrl: 'https://www.ccs.k12.in.us/wbe-lunch-menu',
+          isWcTwo: false,
+          wcTwoUrl: ''
+        },
       }
   }
 }

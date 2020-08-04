@@ -4,7 +4,15 @@ export let dataUp = [
     path: require('./assets/schools/ccs.jpg'),
     name: 'Carmel Clay \nSchools',
     nameFormat: 'Carmel Clay Schools',
-    url: 'https://www.ccs.k12.in.us/',
+    schoolInfo: {
+      color: '#005cb0',
+      url: 'https://www.ccs.k12.in.us/',
+      cal: 'https://www.ccs.k12.in.us/about/district-calendar',
+      isWcOne: false,
+      wcOneUrl: '',
+      isWcTwo: false,
+      wcTwoUrl: ''
+    },
   },
   {
     key: 'add',
@@ -69,25 +77,25 @@ export let schools = [
     checked: false
   },
   {
-    key: 'crms',
+    key: 'crm',
     schoolType: 'ms',
     name: 'Creekside Middle School',
     checked: false
   },
   {
-    key: 'cams',
+    key: 'cam',
     schoolType: 'ms',
     name: 'Carmel Middle School',
     checked: false
   },
   {
-    key: 'clms',
+    key: 'clm',
     schoolType: 'ms',
     name: 'Clay Middle School',
     checked: false
   },
   {
-    key: 'ce',
+    key: 'ces',
     schoolType: 'es',
     name: 'Carmel Elementary School',
     checked: false
@@ -147,7 +155,7 @@ export let schools = [
     checked: false
   },
   {
-    key: 'we',
+    key: 'wbe',
     schoolType: 'es',
     name: 'Woodbrook Elementary School',
     checked: false

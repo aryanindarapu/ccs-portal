@@ -4,48 +4,48 @@ import Constants from 'expo-constants';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { Col, Row, Grid } from "react-native-easy-grid";
 // import PDFView from 'react-native-pdf-view';
-import InAppBrowser from 'react-native-inappbrowser-reborn';
+import * as WebBrowser from 'expo-web-browser';
 
-const SLIDER_WIDTH = Dimensions.get('window').width * 0.45;
-const ICON_COLOR = ''
-
+const SLIDER_WIDTH = Dimensions.get('window').width * 0.4;
 // website, lunch menu, club list, calendar
 
 export default function SchoolInfoScreen({ route }) {
+  const SCHOOL_COLOR = route.params.data.schoolInfo.color
+
   const openLink = async (link) => {
-    
+    let result = await WebBrowser.openBrowserAsync(link)
   }
 
   return (
     <View style={styles.container}>
       <Grid>
         <Col>
-          <Row>
-            <TouchableOpacity activeOpacity={0.5} style={styles.container} onPress={() => openLink(route.params.data.url)}>
-              <MaterialCommunityIcons name="web" size={SLIDER_WIDTH} color="black" />
+          <Row size={2}>
+            <TouchableOpacity activeOpacity={0.5} style={styles.container} onPress={() => openLink(route.params.data.schoolInfo.url)}>
+              <MaterialCommunityIcons name="web" size={SLIDER_WIDTH} color={SCHOOL_COLOR} />
               <Text style={styles.text}>Website</Text>
             </TouchableOpacity>
           </Row>
-          <Row>
-            <TouchableOpacity activeOpacity={0.5} style={styles.container}>
-              <MaterialCommunityIcons name="food" size={SLIDER_WIDTH} color="black" />
+          <Row size={2}>
+            {route.params.data.schoolInfo.isWcOne && <TouchableOpacity activeOpacity={0.5} style={styles.container} onPress={() => openLink(route.params.data.schoolInfo.wcOneUrl)}>
+              <MaterialCommunityIcons name="food" size={SLIDER_WIDTH} color={SCHOOL_COLOR} />
               <Text style={styles.text}>Lunch Menu</Text>
-            </TouchableOpacity>
+            </TouchableOpacity>}
           </Row>
         </Col>
 
         <Col>
-          <Row>
-          <TouchableOpacity activeOpacity={0.5} style={styles.container}>
-              <Ionicons name="ios-calendar" size={SLIDER_WIDTH} color="black" />
+          <Row size={2}>
+            <TouchableOpacity activeOpacity={0.5} style={styles.container} onPress={() => openLink(route.params.data.schoolInfo.cal)}>
+              <Ionicons name="ios-calendar" size={SLIDER_WIDTH} color={SCHOOL_COLOR} />
               <Text style={styles.text}>Calendar</Text>
             </TouchableOpacity>
           </Row>
-          <Row>
-            <TouchableOpacity activeOpacity={0.5} style={styles.container}>
-              <Ionicons name="ios-list" size={SLIDER_WIDTH} color="black" />
+          <Row size={2}>
+            {route.params.data.schoolInfo.isWcTwo && <TouchableOpacity activeOpacity={0.5} style={styles.container} onPress={() => openLink(route.params.data.schoolInfo.wcTwoUrl)}>
+              <Ionicons name="ios-list" size={SLIDER_WIDTH} color={SCHOOL_COLOR} />
               <Text style={styles.text}>Club List</Text>
-            </TouchableOpacity>
+            </TouchableOpacity>}
           </Row>
         </Col>
       </Grid>
@@ -60,15 +60,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#fff",
   },
-  images: {
-    width: SLIDER_WIDTH,
-    borderRadius: 50
-  },
   text: {
     fontSize: 25,
     textAlign: 'center',
     fontFamily: 'System',
     paddingTop: 10,
-    fontWeight: '300'
+    fontWeight: '300',
   },
 })
