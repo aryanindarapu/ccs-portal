@@ -44,8 +44,8 @@ export function dataUpdate(newSchool) {
           cal: 'https://www.ccs.k12.in.us/clm/about/calendar',
           isWcOne: true,
           wcOneUrl: 'https://www.ccs.k12.in.us/clm-lunch-menu',          
-          isWcTwo: false,
-          wcTwoUrl: ''
+          isWcTwo: true,
+          wcTwoUrl: 'https://www.ccs.k12.in.us/clm/student-life/clubs-organizations'
         },
       }
     case 'crm':
@@ -60,8 +60,8 @@ export function dataUpdate(newSchool) {
           cal: 'https://www.ccs.k12.in.us/crm/about/calendar',
           isWcOne: true,
           wcOneUrl: 'https://www.ccs.k12.in.us/crm-lunch-menu',          
-          isWcTwo: false,
-          wcTwoUrl: ''
+          isWcTwo: true,
+          wcTwoUrl: 'https://docs.google.com/spreadsheets/d/1nu21XL80nNGcKNBktBIrh4HtTpULrgQEe31uRFg2GB8/edit#gid=0'
         },
       }
     case 'ces':
@@ -76,8 +76,8 @@ export function dataUpdate(newSchool) {
           cal: 'https://www.ccs.k12.in.us/ces/about/calendar',
           isWcOne: true,
           wcOneUrl: 'https://www.ccs.k12.in.us/ces-lunch-menu',          
-          isWcTwo: false,
-          wcTwoUrl: ''
+          isWcTwo: true,
+          wcTwoUrl: 'https://www.ccs.k12.in.us/ces/student-life/staff-sponsored-clubs'
         },
       }
     case 'cte':
@@ -108,8 +108,8 @@ export function dataUpdate(newSchool) {
           cal: 'https://www.ccs.k12.in.us/cwe/about/calendar',
           isWcOne: true,
           wcOneUrl: 'https://www.ccs.k12.in.us/cwe-lunch-menu',
-          isWcTwo: false,
-          wcTwoUrl: ''
+          isWcTwo: true,
+          wcTwoUrl: 'https://www.ccs.k12.in.us/cwe/student-life/clubs-activities'
         },
       }
     case 'fde':
@@ -140,8 +140,8 @@ export function dataUpdate(newSchool) {
           cal: 'https://www.ccs.k12.in.us/mte/about/calendar',
           isWcOne: true,
           wcOneUrl: 'https://www.ccs.k12.in.us/mte-lunch-menu',
-          isWcTwo: false,
-          wcTwoUrl: ''
+          isWcTwo: true,
+          wcTwoUrl: 'https://www.ccs.k12.in.us/mte/student-life/clubs-activities'
         },
       }
       
@@ -157,8 +157,8 @@ export function dataUpdate(newSchool) {
           cal: 'https://www.ccs.k12.in.us/ope/about/calendar',
           isWcOne: true,
           wcOneUrl: 'https://www.ccs.k12.in.us/ope-lunch-menu',
-          isWcTwo: false,
-          wcTwoUrl: ''
+          isWcTwo: true,
+          wcTwoUrl: 'https://www.ccs.k12.in.us/ope/student-life/cub-clubs'
         },
       }
     case 'pte':
@@ -173,8 +173,8 @@ export function dataUpdate(newSchool) {
           cal: 'https://www.ccs.k12.in.us/pte/about/calendar',
           isWcOne: true,
           wcOneUrl: 'https://www.ccs.k12.in.us/pte-lunch-menu',
-          isWcTwo: false,
-          wcTwoUrl: ''
+          isWcTwo: true,
+          wcTwoUrl: 'https://www.ccs.k12.in.us/pte/student-life/student-clubs-and-programs'
         },
       }
     case 'sre':
@@ -189,8 +189,8 @@ export function dataUpdate(newSchool) {
           cal: 'https://www.ccs.k12.in.us/sre/about/calendar',
           isWcOne: true,
           wcOneUrl: 'https://www.ccs.k12.in.us/sre-lunch-menu',
-          isWcTwo: false,
-          wcTwoUrl: ''
+          isWcTwo: true,
+          wcTwoUrl: 'https://www.ccs.k12.in.us/sre/student-life/schoolwide-initiatives'
         },
       }
     case 'tme':
@@ -205,8 +205,8 @@ export function dataUpdate(newSchool) {
           cal: 'https://www.ccs.k12.in.us/tme/about/calendar',
           isWcOne: true,
           wcOneUrl: 'https://www.ccs.k12.in.us/tme-lunch-menu',
-          isWcTwo: false,
-          wcTwoUrl: ''
+          isWcTwo: true,
+          wcTwoUrl: 'https://www.ccs.k12.in.us/tme/student-life/extracurricular-activities'
         },
       }
     case 'wce':
@@ -221,8 +221,8 @@ export function dataUpdate(newSchool) {
           cal: 'https://www.ccs.k12.in.us/wce/about/calendar',
           isWcOne: true,
           wcOneUrl: 'https://www.ccs.k12.in.us/wce-lunch-menu',
-          isWcTwo: false,
-          wcTwoUrl: ''
+          isWcTwo: true,
+          wcTwoUrl: 'https://www.ccs.k12.in.us/wce/student-life/student-clubs'
         },
       }
     case 'wbe':
@@ -237,8 +237,8 @@ export function dataUpdate(newSchool) {
           cal: 'https://www.ccs.k12.in.us/wce/about/calendar',
           isWcOne: true,
           wcOneUrl: 'https://www.ccs.k12.in.us/wbe-lunch-menu',
-          isWcTwo: false,
-          wcTwoUrl: ''
+          isWcTwo: true,
+          wcTwoUrl: 'https://www.ccs.k12.in.us/wbe/student-life/student-clubs'
         },
       }
   }

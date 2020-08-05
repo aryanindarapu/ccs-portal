@@ -25,9 +25,10 @@ export default class SettingsScreen extends React.Component {
     this.readData()
   }
 
-  saveData = async () => {
+  storeData = async (value) => {
     try {
-      await AsyncStorage.setItem(STORAGE_KEY, this.state.dataUp)
+      const jsonValue = JSON.stringify(value)
+      await AsyncStorage.setItem(STORAGE_KEY, jsonValue)
       console.log("saving data")
     } catch (error) {
       alert(error.message)
@@ -36,19 +37,12 @@ export default class SettingsScreen extends React.Component {
   
   readData = async () => {
     try {
-      const data = await AsyncStorage.getItem(STORAGE_KEY)
-
-      if (data !== null) {
-        alert('prev stored')
-      }
       console.log("reading data")
+      const jsonValue = await AsyncStorage.getItem(STORAGE_KEY)
+      return jsonValue != null ? JSON.parse(jsonValue) : this.state.dataUp;
     } catch (error) {
       alert('failed to fetch settings')
     }
-  }
-  
-  onPullData = () => {
-    this.saveData()
   }
 
   getContent = () => {
@@ -93,13 +87,6 @@ export default class SettingsScreen extends React.Component {
     pushData(this.state.dataUp, this.state.schools)
   }
 
-  // Removes data from dataUp
-  removeData(key) {
-    this.setState({
-      dataUp: this.state.dataUp.filter(data => data.key !== key)
-    })
-  }
-
   // Gets key in school and adds data to dataUp
   toggleTodo(school) {
     this.setState({
@@ -121,12 +108,17 @@ export default class SettingsScreen extends React.Component {
     })
 
     if (newSchool[0].checked) {
-      this.setState({dataUp: [dataUpdate(newSchool), ...this.state.dataUp]})
+      this.setState({dataUp: [dataUpdate(newSchool), ...this.state.dataUp]}, () => this.storeData(this.state.dataUp))
     } else {
       this.removeData(newSchool[0].key)
     }
+  }
 
-    // this.saveData()
+  // Removes data from dataUp
+  removeData(key) {
+    this.setState({
+      dataUp: this.state.dataUp.filter(data => data.key !== key)
+    }, () => this.storeData(this.state.dataUp))
   }
 
   // Functions for collapsible

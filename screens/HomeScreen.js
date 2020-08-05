@@ -7,7 +7,7 @@ import AppLink from 'react-native-app-link';
 import { dataUp, dataDown } from '../IconData';
 
 const SLIDER_WIDTH = Dimensions.get('window').width;
-const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.5);
+const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.45);
 
 const activeOpacity = 0.5
 
@@ -36,7 +36,7 @@ export default class HomeScreen extends React.Component {
         console.error(err)
       })
     } else {
-      return () => this.props.navigation.navigate("SchoolInfoScreen", {data: data})
+      return () => this.props.navigation.navigate("SchoolInfoScreen", {data})
     }
   }
 
@@ -89,9 +89,9 @@ const styles = StyleSheet.create({
     paddingTop: Constants.statusBarHeight,
   },
   images: {
-    width: SLIDER_WIDTH * 0.4,
-    height: SLIDER_WIDTH * 0.4,
-    borderRadius: 50
+    width: SLIDER_WIDTH * 0.3,
+    height: SLIDER_WIDTH * 0.3,
+    borderRadius: 30
   },
   text: {
     fontSize: 20,
