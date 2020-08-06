@@ -1,12 +1,21 @@
 export let dataUp = [
   {
-    id: 'ccs',
-    path: require('./assets/ccs.jpg'),
+    key: 'ccs',
+    path: require('./assets/schools/ccs.png'),
     name: 'Carmel Clay \nSchools',
-    url: 'https://www.ccs.k12.in.us/'
+    nameFormat: 'Carmel Clay Schools',
+    schoolInfo: {
+      color: '#005cb0',
+      url: 'https://www.ccs.k12.in.us/',
+      cal: 'https://www.ccs.k12.in.us/about/district-calendar',
+      isWcOne: false,
+      wcOneUrl: '',
+      isWcTwo: false,
+      wcTwoUrl: ''
+    },
   },
   {
-    id: 'add',
+    key: 'add',
     path: require('./assets/add.png'),
     name: 'Add Schools',
   }
@@ -14,104 +23,140 @@ export let dataUp = [
 
 export const dataDown = [
   {
-    id: 'app',
+    key: 'app',
     path: require('./assets/canvas.png'),
     name: 'Canvas Parent',
-    func: () => alert('Pressed 2:1!')
+    url: 'https://apps.apple.com/us/app/canvas-parent/id1097996698',
+    appName: 'Canvas Parent',
+    appStoreId: '1097996698',
+    playStoreId: 'com.instructure.parentapp'
   }, 
   {
-    id: 'app',
-    path: require('./assets/powerschool.jpg'),
+    key: 'app',
+    path: require('./assets/powerschool.png'),
     name: 'PowerSchool',
-    func: () => alert('Pressed 2:2!')
+    url: 'https://apps.apple.com/us/app/powerschool-mobile/id973741088',
+    appName: 'PowerSchool Mobile',
+    appStoreId: '973741088',
+    playStoreId: 'com.powerschool.portal'
+  },  
+  {
+    key: 'app',
+    path: require('./assets/ez.png'),
+    name: 'EZSchoolPay',
+    url: 'https://apps.apple.com/us/app/ezschoolpay/id642643721',
+    appName: 'EZSchoolPay',
+    appStoreId: '642643721',
+    playStoreId: 'com.harris.ezschoolpay'
   }, 
   {
-    id: 'app',
+    key: 'app',
     path: require('./assets/stopit.png'),
     name: 'STOPit',
-    func: () => alert('Pressed 2:3!')
+    url: 'https://apps.apple.com/us/app/stopit-app/id719179764',
+    appName: 'STOPit',
+    appStoreId: '719179764',
+    playStoreId: 'com.stopitcyberbully.mobile'
   }, 
   {
-    id: 'app',
+    key: 'app',
     path: require('./assets/remind.png'),
     name: 'Remind',
-    func: () => alert('Pressed 2:4!')
+    url: 'https://apps.apple.com/us/app/remind-school-communication/id522826277',
+    appName: 'Remind: School Communication',
+    appStoreId: '522826277',
+    playStoreId: 'com.remind101'
   }
 ]
 
 export let schools = [
   {
-    id: 'chs',
+    key: 'chs',
+    schoolType: 'hs',
     name: 'Carmel High School',
     checked: false
   },
   {
-    id: 'crms',
+    key: 'crm',
+    schoolType: 'ms',
     name: 'Creekside Middle School',
     checked: false
   },
   {
-    id: 'cams',
+    key: 'cam',
+    schoolType: 'ms',
     name: 'Carmel Middle School',
     checked: false
   },
   {
-    id: 'clms',
+    key: 'clm',
+    schoolType: 'ms',
     name: 'Clay Middle School',
     checked: false
   },
   {
-    id: 'ce',
+    key: 'ces',
+    schoolType: 'es',
     name: 'Carmel Elementary School',
     checked: false
   },
   {
-    id: 'cte',
+    key: 'cte',
+    schoolType: 'es',
     name: 'Cherry Tree Elementary School',
     checked: false
   },
   {
-    id: 'cwe',
+    key: 'cwe',
+    schoolType: 'es',
     name: 'College Wood Elementary School',
     checked: false
   },
   {
-    id: 'fde',
+    key: 'fde',
+    schoolType: 'es',
     name: 'Forest Dale Elementary School',
     checked: false
   },
   {
-    id: 'mte',
+    key: 'mte',
+    schoolType: 'es',
     name: 'Mohawk Trails Elementary School',
     checked: false
   },
   {
-    id: 'ope',
+    key: 'ope',
+    schoolType: 'es',
     name: 'Orchard Park Elementary School',
     checked: false
   },
   {
-    id: 'pte',
+    key: 'pte',
+    schoolType: 'es',
     name: 'Praire Trace Elementary School',
     checked: false
   },
   {
-    id: 'sre',
+    key: 'sre',
+    schoolType: 'es',
     name: 'Smoky Row Elementary School',
     checked: false
   },
   {
-    id: 'tme',
+    key: 'tme',
+    schoolType: 'es',
     name: 'Towne Meadow Elementary School',
     checked: false
   },
   {
-    id: 'wce',
+    key: 'wce',
+    schoolType: 'es',
     name: 'West Clay Elementary School',
     checked: false
   },
   {
-    id: 'we',
+    key: 'wbe',
+    schoolType: 'es',
     name: 'Woodbrook Elementary School',
     checked: false
   },
@@ -120,8 +165,4 @@ export let schools = [
 export const pushData = (data, school) => {
   dataUp = data
   schools = school
-}
-
-export const pullData = () => {
-  return dataUp
 }

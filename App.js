@@ -1,14 +1,14 @@
 import React from 'react';
 import { StyleSheet, Button } from 'react-native';
+import { AppLoading } from 'expo';
+import { Asset } from 'expo-asset';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-// import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-// import { Ionicons } from '@expo/vector-icons';
 
-import HomeScreen from './HomeScreen';
-import SettingsScreen from './SettingsScreen';
+import HomeScreen from './screens/HomeScreen';
+import SettingsScreen from './screens/SettingsScreen';
+import SchoolInfoScreen from './screens/SchoolInfoScreen';
 
-// const Tabs = createBottomTabNavigator()
 const Stack = createStackNavigator()
 
 function HomeStack() {
@@ -18,15 +18,23 @@ function HomeStack() {
         name="HomeScreen"
         component={HomeScreen}
         options = {({ navigation }) => ({ 
-          title: 'CCS Parents',
+          title: 'Home',
           headerStyle: {
-            backgroundColor: "#005cb0"
+            backgroundColor: "#fff"
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
-            fontWeight: 'bold'
+            fontWeight: 'bold',
+            color: 'black'
           },
           headerRight: () => (<Button title="Edit Schools" onPress={() => {navigation.navigate('SettingsScreen')}} />)
+        })}
+      />
+      <Stack.Screen 
+        name="SchoolInfoScreen"
+        component={SchoolInfoScreen}
+        options = {({ route }) => ({
+          title: route.params.data.nameFormat.slice(-17) == "Elementary School" ? route.params.data.nameFormat.slice(0, -18) : route.params.data.nameFormat
         })}
       />
       <Stack.Screen
@@ -40,44 +48,36 @@ function HomeStack() {
   )
 }
 
-/* Moving away from tab idea 
-function TabNav() {
-  return (
-    <Tabs.Navigator
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
-          let iconName
+export default class App extends React.Component {
+  state = {
+    isReady: false
+  }
 
-          if (route.name === 'Home') {
-            iconName = focused
-              ? 'md-home'
-              : 'md-home';
-          } else if (route.name === 'Settings') {
-            iconName = focused ? 'md-settings' : 'md-settings';
-          }
-
-          // You can return any component that you like here!
-          return <Ionicons name={iconName} size={size} color={color} />;
-        },
-      })}
-      tabBarOptions={{
-        activeTintColor: '#0f64fa',
-        inactiveTintColor: 'gray',
-      }}
-    >
-      <Tabs.Screen name="Home" component={HomeStack} />
-      <Tabs.Screen name="Settings" component={SettingsScreen} />
-    </Tabs.Navigator>
-  )
-} */
-
-export default class App extends React.Component { 
   render() {
+    if (!this.state.isReady) {
+      return (
+        <AppLoading
+          startAsync={this._cacheResourcesAsync}
+          onFinish={() => this.setState({ isReady: true })}
+          onError={console.warn}
+        />
+      ); 
+    }
+
     return (
       <NavigationContainer>
         <HomeStack />
       </NavigationContainer>
     )
+  }
+
+  async _cacheResourcesAsync() {
+    const images = [require('./assets/icon.png')];
+
+    const cacheImages = images.map(image => {
+      return Asset.fromModule(image).downloadAsync();
+    }); 
+    return Promise.all(cacheImages);
   }
 }
 
