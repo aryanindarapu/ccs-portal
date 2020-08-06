@@ -4,11 +4,11 @@
     "slug": "ccs-parents",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/schools/ccs.jpg",
+    "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/schools/ccs.jpg",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#005cb0"
     },
     "updates": {
       "fallbackToCacheTimeout": 0

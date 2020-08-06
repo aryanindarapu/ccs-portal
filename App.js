@@ -1,5 +1,7 @@
 import React from 'react';
 import { StyleSheet, Button } from 'react-native';
+import { AppLoading } from 'expo';
+import { Asset } from 'expo-asset';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -46,13 +48,36 @@ function HomeStack() {
   )
 }
 
-export default class App extends React.Component { 
+export default class App extends React.Component {
+  state = {
+    isReady: false
+  }
+
   render() {
+    if (!this.state.isReady) {
+      return (
+        <AppLoading
+          startAsync={this._cacheResourcesAsync}
+          onFinish={() => this.setState({ isReady: true })}
+          onError={console.warn}
+        />
+      ); 
+    }
+
     return (
       <NavigationContainer>
         <HomeStack />
       </NavigationContainer>
     )
+  }
+
+  async _cacheResourcesAsync() {
+    const images = [require('./assets/icon.png')];
+
+    const cacheImages = images.map(image => {
+      return Asset.fromModule(image).downloadAsync();
+    }); 
+    return Promise.all(cacheImages);
   }
 }
 

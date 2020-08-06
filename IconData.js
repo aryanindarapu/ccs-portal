@@ -1,7 +1,7 @@
 export let dataUp = [
   {
     key: 'ccs',
-    path: require('./assets/schools/ccs.jpg'),
+    path: require('./assets/schools/ccs.png'),
     name: 'Carmel Clay \nSchools',
     nameFormat: 'Carmel Clay Schools',
     schoolInfo: {
