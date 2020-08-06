@@ -1,8 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions, Image, TouchableOpacity, Linking } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Image, TouchableOpacity, ImageBackground } from 'react-native';
 import Constants from 'expo-constants';
 import Carousel from 'react-native-snap-carousel';
 import AppLink from 'react-native-app-link';
+import { Octicons } from '@expo/vector-icons';
 
 import { dataUp, dataDown } from '../IconData';
 
@@ -40,11 +41,25 @@ export default class HomeScreen extends React.Component {
     }
   }
 
-  _renderItem = ({ item }) => {
+  _renderItemUp = ({ item }) => {
     return (
       <View style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
         <TouchableOpacity style={styles.container} activeOpacity={activeOpacity} onPress={this.iconClicked(item)}>
-          <Image source={item.path} style={styles.images}/>
+          <Image source={item.path} style={styles.images} />
+          <Text style={styles.text}>{item.name}</Text>
+        </TouchableOpacity>
+      </View>
+    )
+  }
+
+  _renderItemDown = ({ item }) => {
+    return (
+      <View style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
+        <TouchableOpacity style={styles.container} activeOpacity={activeOpacity} onPress={this.iconClicked(item)}>
+          <View>
+            <Image source={item.path} style={styles.images} />
+            <Octicons name='info' size={32} style={styles.icon} onPress={() => alert("pressed info")} />
+          </View>
           <Text style={styles.text}>{item.name}</Text>
         </TouchableOpacity>
       </View>
@@ -58,7 +73,7 @@ export default class HomeScreen extends React.Component {
         <Carousel
           data={this.state.dataUp}
           layout={'default'}
-          renderItem={this._renderItem}
+          renderItem={this._renderItemUp}
           sliderWidth={SLIDER_WIDTH}
           itemWidth={ITEM_WIDTH}
           inactiveSlideShift={0}
@@ -68,7 +83,7 @@ export default class HomeScreen extends React.Component {
         <Carousel
           data={this.state.dataDown}
           layout={'default'}
-          renderItem={this._renderItem}
+          renderItem={this._renderItemDown}
           sliderWidth={SLIDER_WIDTH}
           itemWidth={ITEM_WIDTH}
           inactiveSlideShift={0}
@@ -89,9 +104,9 @@ const styles = StyleSheet.create({
     paddingTop: Constants.statusBarHeight,
   },
   images: {
-    width: SLIDER_WIDTH * 0.35,
-    height: SLIDER_WIDTH * 0.35,
-    borderRadius: 30
+    width: SLIDER_WIDTH * 0.4,
+    height: SLIDER_WIDTH * 0.4,
+    borderRadius: 15,
   },
   text: {
     fontSize: 20,
@@ -103,5 +118,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 30,
     fontWeight: '300'
+  },
+  icon: {
+    position: 'absolute',
+    top: 1,
+    right: 3,
+    color: 'white'
   }
 });

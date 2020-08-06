@@ -67,7 +67,7 @@ export function dataUpdate(newSchool) {
     case 'ces':
       return {
         key: 'ces',
-        path: require('./assets/schools/ces.jpg'),
+        path: require('./assets/schools/ces.png'),
         name: 'Carmel \nElementary \nSchool',
         nameFormat: 'Carmel Elementary School',
         schoolInfo: {
@@ -131,7 +131,7 @@ export function dataUpdate(newSchool) {
     case 'mte':
       return {
         key: 'mte',
-        path: require('./assets/schools/mte.jpg'),
+        path: require('./assets/schools/mte.png'),
         name: 'Mohawk Trails \nElementary School',
         nameFormat: 'Mohawk Trails Elementary School',
         schoolInfo: {
