@@ -4,17 +4,45 @@ import Constants from 'expo-constants';
 import * as Animatable from 'react-native-animatable';
 import Accordion from 'react-native-collapsible/Accordion';
 import { Ionicons } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-community/async-storage';
 
-import { dataUp, schools, pushData } from './IconData';
+import { dataUp, schools, pushData } from '../IconData';
 import { pullData } from './HomeScreen';
-import { dataUpdate } from './DataUpdateFuncs';
-import { SchoolSwitch } from './SchoolSwitch';
+import { dataUpdate } from '../DataUpdateFuncs';
+import { SchoolSwitch } from '../SchoolSwitch';
+
+// Saving Data
+const STORAGE_KEY = '@save-dataUp'
 
 export default class SettingsScreen extends React.Component {
   state = {
     dataUp,
     schools,
     activeSections: [],
+  }
+
+  componentDidMount() {
+    this.readData()
+  }
+
+  storeData = async (value) => {
+    try {
+      const jsonValue = JSON.stringify(value)
+      await AsyncStorage.setItem(STORAGE_KEY, jsonValue)
+      console.log("saving data")
+    } catch (error) {
+      alert(error.message)
+    }
+  }
+  
+  readData = async () => {
+    try {
+      console.log("reading data")
+      const jsonValue = await AsyncStorage.getItem(STORAGE_KEY)
+      return jsonValue != null ? JSON.parse(jsonValue) : this.state.dataUp;
+    } catch (error) {
+      alert('failed to fetch settings')
+    }
   }
 
   getContent = () => {
@@ -59,16 +87,8 @@ export default class SettingsScreen extends React.Component {
     pushData(this.state.dataUp, this.state.schools)
   }
 
-  // Removes data from dataUp
-  removeData(key) {
-    this.setState({
-      dataUp: this.state.dataUp.filter(data => data.key !== key)
-    })
-  }
-
   // Gets key in school and adds data to dataUp
   toggleTodo(school) {
-    console.log(school)
     this.setState({
       schools: this.state.schools.map(data => {
         if (data.key !== school.key) return data
@@ -88,10 +108,17 @@ export default class SettingsScreen extends React.Component {
     })
 
     if (newSchool[0].checked) {
-      this.setState({dataUp: [dataUpdate(newSchool), ...this.state.dataUp]})
+      this.setState({dataUp: [dataUpdate(newSchool), ...this.state.dataUp]}, () => this.storeData(this.state.dataUp))
     } else {
       this.removeData(newSchool[0].key)
     }
+  }
+
+  // Removes data from dataUp
+  removeData(key) {
+    this.setState({
+      dataUp: this.state.dataUp.filter(data => data.key !== key)
+    }, () => this.storeData(this.state.dataUp))
   }
 
   // Functions for collapsible
