@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions, Image, TouchableOpacity, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Image, TouchableOpacity, Button } from 'react-native';
 import Constants from 'expo-constants';
 import Carousel from 'react-native-snap-carousel';
 import AppLink from 'react-native-app-link';
 import { Octicons } from '@expo/vector-icons';
+import FlipCard from 'react-native-flip-card'
 
 import { dataUp, dataDown } from '../IconData';
 
@@ -24,6 +25,7 @@ export default class HomeScreen extends React.Component {
       dataUp,
       dataDown
     }
+    
     pullData = pullData.bind(this)
   }
 
@@ -52,16 +54,75 @@ export default class HomeScreen extends React.Component {
     )
   }
 
+  flipCard = ({ item }) => {
+    this.setState({
+      dataDown: this.state.dataDown.map(data => {
+        if (data.name !== item.name) return data
+        return { 
+          key: data.key,
+          path: data.path,
+          name: data.name,
+          url: data.url,
+          appName: data.appName,
+          appStoreId: data.appStoreId,
+          playStoreId: data.playStoreId,
+          flip: !data.flip
+        }
+      })
+    })
+  }
+
+  getFlipState = ({ item }) => {
+    let currentCard = this.state.dataDown.filter(data => data.name === item.name)
+    return currentCard[0].flip
+  }
+
   _renderItemDown = ({ item }) => {
+    let url = ""
+    switch (item.name) {
+      case "Canvas Parent":
+        url = require('../assets/canvasBack.png')
+        break
+      case "PowerSchool":
+        url = require('../assets/powerschoolBack.png')
+        break
+      case "EZSchoolPay":
+        url = require('../assets/ezBack.png')
+        break
+      case "STOPit":
+        url = require('../assets/stopitBack.png')
+        break
+      case "Remind":
+        url = require('../assets/remindBack.png')
+        break
+    }
+    
     return (
       <View style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
-        <TouchableOpacity style={styles.container} activeOpacity={activeOpacity} onPress={this.iconClicked(item)}>
-          <View>
-            <Image source={item.path} style={styles.images} />
-            <Octicons name='info' size={32} style={styles.icon} onPress={() => alert("pressed info")} />
+        <FlipCard
+          style={styles.container}
+          friction={6}
+          perspective={1000}
+          flipHorizontal={true}
+          flipVertical={false}
+          flip={this.getFlipState({item})}
+          clickable={false}
+        >
+          <TouchableOpacity activeOpacity={activeOpacity} onPress={this.iconClicked(item)}>
+            <View>
+              <Image source={item.path} style={styles.images} />
+              <Octicons name='info' size={32} style={styles.icon} onPress={() => this.flipCard({item})}/>
+              <Text style={styles.text}>{item.name}</Text>
+            </View>
+          </TouchableOpacity>
+
+          <View style={{justifyContent: 'center', alignItems: 'center'}}>
+            <Image source={url} style={styles.images} />
+            <Octicons name='info' size={32} style={styles.icon} onPress={() => this.flipCard({item})} />
+            <Text style={styles.cardText}>Review assignments, check on grades, and receive alerts for student activity.</Text>
+            <Text style={styles.text}>{item.name}</Text>
           </View>
-          <Text style={styles.text}>{item.name}</Text>
-        </TouchableOpacity>
+        </FlipCard>
       </View>
     )
   }
@@ -69,7 +130,7 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>Welcome Carmel Clay Schools Parents!</Text>
+        <Text style={styles.title}>Welcome Carmel Clay Schools!</Text>
         <Carousel
           data={this.state.dataUp}
           layout={'default'}
@@ -124,5 +185,11 @@ const styles = StyleSheet.create({
     top: 1,
     right: 3,
     color: 'white'
+  },
+  cardText: {
+    position: 'absolute',
+    color: 'white',
+    textAlign: 'center',
+    fontSize: 16,
   }
 });

@@ -81,12 +81,6 @@ export default class SettingsScreen extends React.Component {
     ])
   }
 
-  // Functions for sending and pulling data
-  componentWillUnmount() {
-    pullData(this.state.dataUp) 
-    pushData(this.state.dataUp, this.state.schools)
-  }
-
   // Gets key in school and adds data to dataUp
   toggleTodo(school) {
     this.setState({
@@ -108,17 +102,26 @@ export default class SettingsScreen extends React.Component {
     })
 
     if (newSchool[0].checked) {
-      this.setState({dataUp: [dataUpdate(newSchool), ...this.state.dataUp]}, () => this.storeData(this.state.dataUp))
+      // adds data and updates carousel
+      this.setState({
+        dataUp: [dataUpdate(newSchool), ...this.state.dataUp]
+      }, () => {
+          this.storeData(this.state.dataUp)
+          pullData(this.state.dataUp)
+          pushData(this.state.dataUp, this.state.schools)
+        }  
+      )
     } else {
-      this.removeData(newSchool[0].key)
+      // removes data and updates carousel
+      this.setState({
+        dataUp: this.state.dataUp.filter(data => data.key !== newSchool[0].key)
+      }, () => {
+          this.storeData(this.state.dataUp)
+          pullData(this.state.dataUp)
+          pushData(this.state.dataUp, this.state.schools)
+        }
+      )
     }
-  }
-
-  // Removes data from dataUp
-  removeData(key) {
-    this.setState({
-      dataUp: this.state.dataUp.filter(data => data.key !== key)
-    }, () => this.storeData(this.state.dataUp))
   }
 
   // Functions for collapsible
