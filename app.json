@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "ccs-parents",
-    "slug": "ccs-parents",
+    "name": "ccs-app",
+    "slug": "ccs-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
