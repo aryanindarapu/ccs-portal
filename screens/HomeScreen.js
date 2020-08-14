@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions, Image, TouchableOpacity, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Image, TouchableOpacity, Button } from 'react-native';
 import Constants from 'expo-constants';
 import Carousel from 'react-native-snap-carousel';
 import AppLink from 'react-native-app-link';
 import { Octicons } from '@expo/vector-icons';
+import FlipCard from 'react-native-flip-card'
 
 import { dataUp, dataDown } from '../IconData';
 
@@ -24,6 +25,7 @@ export default class HomeScreen extends React.Component {
       dataUp,
       dataDown
     }
+    
     pullData = pullData.bind(this)
   }
 
@@ -37,7 +39,7 @@ export default class HomeScreen extends React.Component {
         console.error(err)
       })
     } else {
-      return () => this.props.navigation.navigate("SchoolInfoScreen", {data})
+      return () => this.props.navigation.navigate('SchoolInfoScreen', {data})
     }
   }
 
@@ -52,16 +54,90 @@ export default class HomeScreen extends React.Component {
     )
   }
 
+  flipCard = ({ item }) => {
+    this.setState({
+      dataDown: this.state.dataDown.map(data => {
+        if (data.name !== item.name) return data
+        return { 
+          key: data.key,
+          path: data.path,
+          name: data.name,
+          url: data.url,
+          appName: data.appName,
+          appStoreId: data.appStoreId,
+          playStoreId: data.playStoreId,
+          flip: !data.flip
+        }
+      })
+    })
+  }
+
+  getFlipState = ({ item }) => {
+    let currentCard = this.state.dataDown.filter(data => data.name === item.name)
+    return currentCard[0].flip
+  }
+
   _renderItemDown = ({ item }) => {
+    let url = ""
+    let text = ""
+    switch (item.name) {
+      case "Canvas Parent":
+        url = require('../assets/canvasBack.png')
+        text = "Receive alerts for student activity."
+        break
+      case "PowerSchool":
+        url = require('../assets/powerschoolBack.png')
+        text = "Real-time student performance."
+        break
+      case "EZSchoolPay":
+        url = require('../assets/ezBack.png')
+        text = "Easy way to pay for school meals."
+        break
+      case "STOPit":
+        url = require('../assets/stopitBack.png')
+        text = "Anonymous reporting."
+        break
+      case "Remind":
+        url = require('../assets/remindBack.png')
+        text = "Notifications from teachers."
+        break
+    }
+    
     return (
       <View style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
-        <TouchableOpacity style={styles.container} activeOpacity={activeOpacity} onPress={this.iconClicked(item)}>
+        <FlipCard
+          style={styles.container}
+          friction={6}
+          perspective={1000}
+          flipHorizontal={true}
+          flipVertical={false}
+          flip={this.getFlipState({item})}
+          clickable={false}
+        >
           <View>
-            <Image source={item.path} style={styles.images} />
-            {/* <Octicons name='info' size={32} style={styles.icon} onPress={() => alert("pressed info")} /> */}
+            <TouchableOpacity activeOpacity={activeOpacity} onPress={this.iconClicked(item)}>
+              <Image source={item.path} style={styles.images} />
+              <Octicons name='info' size={32} style={styles.icon} onPress={() => this.flipCard({item})}/>
+              <Text style={styles.text}>{item.name}</Text>
+            </TouchableOpacity>
           </View>
-          <Text style={styles.text}>{item.name}</Text>
-        </TouchableOpacity>
+
+          <View style={{justifyContent: 'center', alignItems: 'center'}}>
+            <Image source={url} style={styles.images} />
+            <Octicons name='info' size={32} style={styles.icon} onPress={() => this.flipCard({item})} />
+            <Text style={styles.cardText}>{text}</Text>
+            <TouchableOpacity 
+              style={{ position: 'absolute', justifyContent: 'center', alignItems: 'center'}}
+              onPress={() => {
+                this.flipCard({item})
+                this.props.navigation.navigate("AppInfoScreen", {item})
+              }}
+            >
+              <Text style={{fontWeight: 'bold', color: 'white', fontSize: 20}}>Learn More</Text>
+            </TouchableOpacity>
+            <Text style={styles.text}>{item.name}</Text>
+          </View>
+        </FlipCard>
       </View>
     )
   }
@@ -69,7 +145,7 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>Welcome Carmel Clay Schools Parents!</Text>
+        <Text style={styles.title}>Welcome Carmel Clay Schools!</Text>
         <Carousel
           data={this.state.dataUp}
           layout={'default'}
@@ -123,6 +199,14 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 1,
     right: 3,
-    color: 'white'
-  }
+    color: 'white',
+    zIndex: 4
+  },
+  cardText: {
+    position: 'absolute',
+    color: 'white',
+    textAlign: 'center',
+    fontSize: 16,
+    top: 40
+  },
 });

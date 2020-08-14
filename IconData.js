@@ -29,7 +29,8 @@ export const dataDown = [
     url: 'https://apps.apple.com/us/app/canvas-parent/id1097996698',
     appName: 'Canvas Parent',
     appStoreId: '1097996698',
-    playStoreId: 'com.instructure.parentapp'
+    playStoreId: 'com.instructure.parentapp',
+    flip: false
   }, 
   {
     key: 'app',
@@ -38,7 +39,8 @@ export const dataDown = [
     url: 'https://apps.apple.com/us/app/powerschool-mobile/id973741088',
     appName: 'PowerSchool Mobile',
     appStoreId: '973741088',
-    playStoreId: 'com.powerschool.portal'
+    playStoreId: 'com.powerschool.portal',
+    flip: false
   },  
   {
     key: 'app',
@@ -47,7 +49,8 @@ export const dataDown = [
     url: 'https://apps.apple.com/us/app/ezschoolpay/id642643721',
     appName: 'EZSchoolPay',
     appStoreId: '642643721',
-    playStoreId: 'com.harris.ezschoolpay'
+    playStoreId: 'com.harris.ezschoolpay',
+    flip: false
   }, 
   {
     key: 'app',
@@ -56,7 +59,8 @@ export const dataDown = [
     url: 'https://apps.apple.com/us/app/stopit-app/id719179764',
     appName: 'STOPit',
     appStoreId: '719179764',
-    playStoreId: 'com.stopitcyberbully.mobile'
+    playStoreId: 'com.stopitcyberbully.mobile',
+    flip: false
   }, 
   {
     key: 'app',
@@ -65,7 +69,8 @@ export const dataDown = [
     url: 'https://apps.apple.com/us/app/remind-school-communication/id522826277',
     appName: 'Remind: School Communication',
     appStoreId: '522826277',
-    playStoreId: 'com.remind101'
+    playStoreId: 'com.remind101',
+    flip: false
   }
 ]
 
