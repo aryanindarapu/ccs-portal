@@ -8,6 +8,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './screens/HomeScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import SchoolInfoScreen from './screens/SchoolInfoScreen';
+import AppInfoScreen from './screens/AppInfoScreen'
 
 const Stack = createStackNavigator()
 
@@ -36,6 +37,13 @@ function HomeStack() {
         options = {({ route }) => ({
           title: route.params.data.nameFormat.slice(-17) == "Elementary School" ? route.params.data.nameFormat.slice(0, -18) : route.params.data.nameFormat
         })}
+      />
+      <Stack.Screen 
+        name="AppInfoScreen"
+        component={AppInfoScreen}
+        options = {{
+          title: "More Information"
+        }}
       />
       <Stack.Screen
         name="SettingsScreen"

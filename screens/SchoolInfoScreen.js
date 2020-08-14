@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyleSheet, Linking, TouchableOpacity, Text, Dimensions, View } from 'react-native';
-import { Ionicons, MaterialCommunityIcons, AntDesign, Feather } from '@expo/vector-icons';
+import { StyleSheet, TouchableOpacity, Text, Dimensions, View } from 'react-native';
+import { MaterialCommunityIcons, AntDesign, Feather } from '@expo/vector-icons';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import * as WebBrowser from 'expo-web-browser';
 

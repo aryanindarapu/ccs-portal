@@ -39,7 +39,7 @@ export default class HomeScreen extends React.Component {
         console.error(err)
       })
     } else {
-      return () => this.props.navigation.navigate("SchoolInfoScreen", {data})
+      return () => this.props.navigation.navigate('SchoolInfoScreen', {data})
     }
   }
 
@@ -79,21 +79,27 @@ export default class HomeScreen extends React.Component {
 
   _renderItemDown = ({ item }) => {
     let url = ""
+    let text = ""
     switch (item.name) {
       case "Canvas Parent":
         url = require('../assets/canvasBack.png')
+        text = "Receive alerts for student activity."
         break
       case "PowerSchool":
         url = require('../assets/powerschoolBack.png')
+        text = "Real-time student performance."
         break
       case "EZSchoolPay":
         url = require('../assets/ezBack.png')
+        text = "Easy way to pay for school meals."
         break
       case "STOPit":
         url = require('../assets/stopitBack.png')
+        text = "Anonymous reporting."
         break
       case "Remind":
         url = require('../assets/remindBack.png')
+        text = "Notifications from teachers."
         break
     }
     
@@ -108,18 +114,27 @@ export default class HomeScreen extends React.Component {
           flip={this.getFlipState({item})}
           clickable={false}
         >
-          <TouchableOpacity activeOpacity={activeOpacity} onPress={this.iconClicked(item)}>
-            <View>
+          <View>
+            <TouchableOpacity activeOpacity={activeOpacity} onPress={this.iconClicked(item)}>
               <Image source={item.path} style={styles.images} />
               <Octicons name='info' size={32} style={styles.icon} onPress={() => this.flipCard({item})}/>
               <Text style={styles.text}>{item.name}</Text>
-            </View>
-          </TouchableOpacity>
+            </TouchableOpacity>
+          </View>
 
           <View style={{justifyContent: 'center', alignItems: 'center'}}>
             <Image source={url} style={styles.images} />
             <Octicons name='info' size={32} style={styles.icon} onPress={() => this.flipCard({item})} />
-            <Text style={styles.cardText}>Review assignments, check on grades, and receive alerts for student activity.</Text>
+            <Text style={styles.cardText}>{text}</Text>
+            <TouchableOpacity 
+              style={{ position: 'absolute', justifyContent: 'center', alignItems: 'center'}}
+              onPress={() => {
+                this.flipCard({item})
+                this.props.navigation.navigate("AppInfoScreen", {item})
+              }}
+            >
+              <Text style={{fontWeight: 'bold', color: 'white', fontSize: 20}}>Learn More</Text>
+            </TouchableOpacity>
             <Text style={styles.text}>{item.name}</Text>
           </View>
         </FlipCard>
@@ -184,12 +199,14 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 1,
     right: 3,
-    color: 'white'
+    color: 'white',
+    zIndex: 4
   },
   cardText: {
     position: 'absolute',
     color: 'white',
     textAlign: 'center',
     fontSize: 16,
-  }
+    top: 40
+  },
 });
