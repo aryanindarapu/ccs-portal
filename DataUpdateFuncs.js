@@ -3,7 +3,6 @@ export function dataUpdate(newSchool) {
     case 'chs':
      return {
         key: 'chs',
-        path: require('./assets/schools/chs.png'),
         name: 'Carmel High \nSchool',
         nameFormat: 'Carmel High School',
         schoolInfo: {
@@ -19,7 +18,6 @@ export function dataUpdate(newSchool) {
     case 'cam':
       return {
         key: 'cam',
-        path: require('./assets/schools/cam.png'),
         name: 'Carmel Middle \nSchool',
         nameFormat: 'Carmel Middle School',
         schoolInfo: {
@@ -35,7 +33,6 @@ export function dataUpdate(newSchool) {
     case 'clm':
       return {
         key: 'clm',
-        path: require('./assets/schools/clm.jpg'),
         name: 'Clay Middle \nSchool',
         nameFormat: 'Clay Middle School',
         schoolInfo: {
@@ -51,7 +48,6 @@ export function dataUpdate(newSchool) {
     case 'crm':
       return {
         key: 'crm',
-        path: require('./assets/schools/crm.png'),
         name: 'Creekside Middle \nSchool',
         nameFormat: 'Creekside Middle School',
         schoolInfo: {
@@ -67,7 +63,6 @@ export function dataUpdate(newSchool) {
     case 'ces':
       return {
         key: 'ces',
-        path: require('./assets/schools/ces.png'),
         name: 'Carmel \nElementary \nSchool',
         nameFormat: 'Carmel Elementary School',
         schoolInfo: {
@@ -83,7 +78,6 @@ export function dataUpdate(newSchool) {
     case 'cte':
       return {
         key: 'cte',
-        path: require('./assets/schools/cte.png'),
         name: 'Cherry Tree \nElementary School',
         nameFormat: 'Cherry Tree Elementary School',
         schoolInfo: {
@@ -99,7 +93,6 @@ export function dataUpdate(newSchool) {
     case 'cwe':
       return {
         key: 'cwe',
-        path: require('./assets/schools/cwe.png'),
         name: 'College Wood \nElementary School',
         nameFormat: 'College Wood Elementary School',
         schoolInfo: {
@@ -115,7 +108,6 @@ export function dataUpdate(newSchool) {
     case 'fde':
       return {
         key: 'fde',
-        path: require('./assets/schools/fde.png'),
         name: 'Forest Dale \nElementary School',
         nameFormat: 'Forest Dale Elementary School',
         schoolInfo: {
@@ -131,7 +123,6 @@ export function dataUpdate(newSchool) {
     case 'mte':
       return {
         key: 'mte',
-        path: require('./assets/schools/mte.png'),
         name: 'Mohawk Trails \nElementary School',
         nameFormat: 'Mohawk Trails Elementary School',
         schoolInfo: {
@@ -148,7 +139,6 @@ export function dataUpdate(newSchool) {
     case 'ope':
       return {
         key: 'ope',
-        path: require('./assets/schools/ope.png'),
         name: 'Orchard Park \nElementary School',
         nameFormat: 'Orchard Park Elementary School',
         schoolInfo: {
@@ -164,7 +154,6 @@ export function dataUpdate(newSchool) {
     case 'pte':
       return {
         key: 'pte',
-        path: require('./assets/schools/pte.png'),
         name: 'Prairie Trace \nElementary School',
         nameFormat: 'Prairie Trace Elementary School',
         schoolInfo: {
@@ -180,7 +169,6 @@ export function dataUpdate(newSchool) {
     case 'sre':
       return {
         key: 'sre',
-        path: require('./assets/schools/sre.png'),
         name: 'Smoky Row \nElementary School',
         nameFormat: 'Smoky Row Elementary School',
         schoolInfo: {
@@ -196,7 +184,6 @@ export function dataUpdate(newSchool) {
     case 'tme':
       return {
         key: 'tme',
-        path: require('./assets/schools/tme.jpg'),
         name: 'Towne Meadow \nElementary School',
         nameFormat: 'Towne Meadow Elementary School',
         schoolInfo: {
@@ -212,7 +199,6 @@ export function dataUpdate(newSchool) {
     case 'wce':
       return {
         key: 'wce',
-        path: require('./assets/schools/wce.png'),
         name: 'West Clay \nElementary School',
         nameFormat: 'West Clay Elementary School',
         schoolInfo: {
@@ -228,7 +214,6 @@ export function dataUpdate(newSchool) {
     case 'wbe':
       return {
         key: 'wbe',
-        path: require('./assets/schools/wbe.png'),
         name: 'Woodbrook Elementary \nSchool',
         nameFormat: 'Woodbrook Elementary School',
         schoolInfo: {

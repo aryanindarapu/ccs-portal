@@ -11,9 +11,6 @@ import { pullData } from './HomeScreen';
 import { dataUpdate } from '../DataUpdateFuncs';
 import { SchoolSwitch } from '../SchoolSwitch';
 
-// Saving Data
-const STORAGE_KEY = '@save-dataUp'
-
 export default class EditSchoolsScreen extends React.Component {
   state = {
     dataUp,
@@ -25,10 +22,13 @@ export default class EditSchoolsScreen extends React.Component {
     this.readData()
   }
 
-  storeData = async (value) => {
+  storeData = async (data, school) => {
     try {
-      const jsonValue = JSON.stringify(value)
-      await AsyncStorage.setItem(STORAGE_KEY, jsonValue)
+      const jsonValueData = JSON.stringify(data)
+      const jsonValueSchool = JSON.stringify(school)
+      await AsyncStorage.setItem('@test3', jsonValueData)
+      await AsyncStorage.setItem('@test11', jsonValueSchool)
+
       console.log("saving data")
     } catch (error) {
       alert(error.message)
@@ -38,8 +38,11 @@ export default class EditSchoolsScreen extends React.Component {
   readData = async () => {
     try {
       console.log("reading data")
-      const jsonValue = await AsyncStorage.getItem(STORAGE_KEY)
-      return jsonValue != null ? JSON.parse(jsonValue) : this.state.dataUp;
+      const jsonValueData = await AsyncStorage.getItem('@test3')
+      const jsonValueSchool = await AsyncStorage.getItem('@test11')
+      jsonValueData != null ? this.setState({ dataUp: JSON.parse(jsonValueData)}) : this.state.dataUp
+      jsonValueSchool != null ? this.setState({ schools: JSON.parse(jsonValueSchool)}) : this.state.schools
+      // return jsonValue != null ? JSON.parse(jsonValue) : null
     } catch (error) {
       alert('failed to fetch settings')
     }
@@ -106,7 +109,7 @@ export default class EditSchoolsScreen extends React.Component {
       this.setState({
         dataUp: [dataUpdate(newSchool), ...this.state.dataUp]
       }, () => {
-          this.storeData(this.state.dataUp)
+          this.storeData(this.state.dataUp, this.state.schools)
           pullData(this.state.dataUp)
           pushData(this.state.dataUp, this.state.schools)
         }  
@@ -116,7 +119,7 @@ export default class EditSchoolsScreen extends React.Component {
       this.setState({
         dataUp: this.state.dataUp.filter(data => data.key !== newSchool[0].key)
       }, () => {
-          this.storeData(this.state.dataUp)
+          this.storeData(this.state.dataUp, this.state.schools)
           pullData(this.state.dataUp)
           pushData(this.state.dataUp, this.state.schools)
         }
@@ -178,6 +181,7 @@ export default class EditSchoolsScreen extends React.Component {
           duration={400}
           onChange={this.setSections}
         />
+        <Text>{this.state.testWord}</Text>
       </ScrollView>
     );
   }

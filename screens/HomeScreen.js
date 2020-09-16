@@ -4,7 +4,8 @@ import Constants from 'expo-constants';
 import Carousel from 'react-native-snap-carousel';
 import AppLink from 'react-native-app-link';
 import { Octicons } from '@expo/vector-icons';
-import FlipCard from 'react-native-flip-card'
+import FlipCard from 'react-native-flip-card';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import { dataUp, dataDown } from '../IconData';
 
@@ -29,6 +30,21 @@ export default class HomeScreen extends React.Component {
     pullData = pullData.bind(this)
   }
 
+  componentDidMount() {
+    this.readData()
+  }
+
+  readData = async () => {
+    try {
+      console.log("reading data on HS")
+      const jsonValue = await AsyncStorage.getItem('@test3')
+      this.setState({ dataUp: JSON.parse(jsonValue)})
+      // return jsonValue != null ? JSON.parse(jsonValue) : null
+    } catch (error) {
+      alert('failed to fetch settings')
+    }
+  }
+
   iconClicked = data => {
     if (data.key == 'add') {
       return () => this.props.navigation.navigate('EditSchoolsScreen')
@@ -44,10 +60,68 @@ export default class HomeScreen extends React.Component {
   }
 
   _renderItemUp = ({ item }) => {
+    let path = ''
+    console.log(item.key)
+    switch (item.key) {
+      case 'ccs':
+        path = require('../assets/schools/ccs.png')
+        break
+      case 'add':
+        path = require('../assets/add.png')
+        break
+      case 'chs':
+        path = require('../assets/schools/chs.png')
+        break
+      case 'cam':
+        path = require('../assets/schools/cam.png')
+        break
+      case 'clm':
+        path = require('../assets/schools/clm.jpg')
+        break
+      case 'crm':
+        path = require('../assets/schools/crm.png')
+        break
+      case 'ces':
+        path = require('../assets/schools/ces.png')
+        break
+      case 'cte':
+        path = require('../assets/schools/cte.png')
+        break
+      case 'cwe':
+        path = require('../assets/schools/cwe.png')
+        break
+      case 'fde':
+        path = require('../assets/schools/fde.png')
+        break
+      case 'mte':
+        path = require('../assets/schools/mte.png')
+        break
+      case 'ope':
+        path = require('../assets/schools/ope.png')
+        break
+      case 'pte':
+        path = require('../assets/schools/pte.png')
+        break
+      case 'sre':
+        path = require('../assets/schools/sre.png')
+        break
+      case 'tme':
+        path = require('../assets/schools/tme.jpg')
+        break
+      case 'wce':
+        path = require('../assets/schools/wce.png')
+        break
+      case 'wbe':
+        path = require('../assets/schools/wbe.png')
+        break
+      default:
+        path = require('../assets/schools/notfound.png')
+    }
+
     return (
       <View style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
         <TouchableOpacity style={styles.container} activeOpacity={activeOpacity} onPress={this.iconClicked(item)}>
-          <Image source={item.path} style={styles.images} />
+          <Image source={path} style={styles.images} />
           <Text style={styles.text}>{item.name}</Text>
         </TouchableOpacity>
       </View>

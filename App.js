@@ -6,7 +6,7 @@ import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Ionicons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import HomeScreen from './screens/HomeScreen';
 import SettingsScreen from './screens/SettingsScreen';
@@ -15,7 +15,7 @@ import AppInfoScreen from './screens/AppInfoScreen';
 import EditSchoolsScreen from './screens/EditSchoolsScreen';
 
 const Stack = createStackNavigator()
-const SStack = createStackNavigator()
+const SetStack = createStackNavigator()
 const Tabs = createBottomTabNavigator()
 
 function HomeStack() {
@@ -56,22 +56,22 @@ function HomeStack() {
 
 function SettingsStack() {
   return (
-    <Stack.Navigator initialRouteName="SettingsScreen">
-      <Stack.Screen
+    <SetStack.Navigator initialRouteName="SettingsScreen">
+      <SetStack.Screen
         name="SettingsScreen"
         component={SettingsScreen}
         options = {{
           title: 'Settings'
         }}
       />
-      <Stack.Screen
+      <SetStack.Screen
         name="EditSchoolsScreen"
         component={EditSchoolsScreen}
         options = {{
           title: 'Edit Schools'
         }}
       />
-    </Stack.Navigator>
+    </SetStack.Navigator>
   )
 }
 
@@ -100,14 +100,14 @@ export default class App extends React.Component {
   
               if (route.name === 'Home') {
                 iconName = focused
-                  ? 'ios-information-circle'
-                  : 'ios-information-circle-outline';
+                  ? 'home'
+                  : 'home-outline';
               } else if (route.name === 'Settings') {
-                iconName = focused ? 'ios-list-box' : 'ios-list';
+                iconName = focused ? 'settings' : 'settings-outline';
               }
   
               // You can return any component that you like here!
-              return <Ionicons name={iconName} size={size} color={color} />;
+              return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
             },
           })}
           tabBarOptions={{

@@ -1,10 +1,10 @@
 import React from 'react';
-import { StyleSheet, Image, View, Alert } from 'react-native';
+import { StyleSheet, View, Alert } from 'react-native';
 import Constants from 'expo-constants';
 
 import SettingsList from 'react-native-settings-list';
 
-export default function SettingsScreen() {
+export default function SettingsScreen({ navigation }) {
   return (
     <View style={{flex:1}}>
       <SettingsList>
@@ -12,12 +12,12 @@ export default function SettingsScreen() {
         <SettingsList.Item
           itemWidth={50}
           title='Change Roles'
-          onPress={() => this.props.navigation.navigate('EditSchoolsScreen')}
+          onPress={() => navigation.navigate('EditSchoolsScreen')}
         />
         <SettingsList.Item
           itemWidth={50}
           title='Edit Schools'
-          onPress={() => this.props.navigation.navigate('EditSchoolsScreen')}
+          onPress={() => navigation.navigate('EditSchoolsScreen')}
         />
         <SettingsList.Item
           // icon={
