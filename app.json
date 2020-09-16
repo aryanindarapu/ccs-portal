@@ -1,7 +1,9 @@
 {
   "expo": {
-    "name": "ccs-app",
+    "name": "CCS Portal",
     "slug": "ccs-app",
+    "description": "Access to all CCS hotspots",
+    "privacy": "public",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -18,6 +20,9 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.awi.ccsportal"
     },
     "web": {
       "favicon": "./assets/favicon.png"

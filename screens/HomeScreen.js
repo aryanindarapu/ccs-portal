@@ -31,7 +31,7 @@ export default class HomeScreen extends React.Component {
 
   iconClicked = data => {
     if (data.key == 'add') {
-      return () => this.props.navigation.navigate('SettingsScreen')
+      return () => this.props.navigation.navigate('EditSchoolsScreen')
     } else if (data.key == 'app') {
       return () => AppLink.maybeOpenURL(data.url, { appName: data.appName, appStoreId: data.appStoreId, playStoreId: data.playStoreId}).then(() => {
         console.log("testing worked")
@@ -145,7 +145,7 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>Welcome Carmel Clay Schools!</Text>
+        <Text style={styles.title}>Carmel Clay Schools Portal</Text>
         <Carousel
           data={this.state.dataUp}
           layout={'default'}

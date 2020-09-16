@@ -1,16 +1,22 @@
 import React from 'react';
-import { StyleSheet, Button } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { AppLoading } from 'expo';
 import { Asset } from 'expo-asset';
+import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Ionicons } from '@expo/vector-icons';
 
 import HomeScreen from './screens/HomeScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import SchoolInfoScreen from './screens/SchoolInfoScreen';
-import AppInfoScreen from './screens/AppInfoScreen'
+import AppInfoScreen from './screens/AppInfoScreen';
+import EditSchoolsScreen from './screens/EditSchoolsScreen';
 
 const Stack = createStackNavigator()
+const SStack = createStackNavigator()
+const Tabs = createBottomTabNavigator()
 
 function HomeStack() {
   return (
@@ -27,8 +33,7 @@ function HomeStack() {
           headerTitleStyle: {
             fontWeight: 'bold',
             color: 'black'
-          },
-          headerRight: () => (<Button title="Edit Schools" onPress={() => {navigation.navigate('SettingsScreen')}} />)
+          }
         })}
       />
       <Stack.Screen 
@@ -45,9 +50,23 @@ function HomeStack() {
           title: "More Information"
         }}
       />
+    </Stack.Navigator>
+  )
+}
+
+function SettingsStack() {
+  return (
+    <Stack.Navigator initialRouteName="SettingsScreen">
       <Stack.Screen
         name="SettingsScreen"
         component={SettingsScreen}
+        options = {{
+          title: 'Settings'
+        }}
+      />
+      <Stack.Screen
+        name="EditSchoolsScreen"
+        component={EditSchoolsScreen}
         options = {{
           title: 'Edit Schools'
         }}
@@ -74,7 +93,32 @@ export default class App extends React.Component {
 
     return (
       <NavigationContainer>
-        <HomeStack />
+        <Tabs.Navigator
+          screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, color, size }) => {
+              let iconName;
+  
+              if (route.name === 'Home') {
+                iconName = focused
+                  ? 'ios-information-circle'
+                  : 'ios-information-circle-outline';
+              } else if (route.name === 'Settings') {
+                iconName = focused ? 'ios-list-box' : 'ios-list';
+              }
+  
+              // You can return any component that you like here!
+              return <Ionicons name={iconName} size={size} color={color} />;
+            },
+          })}
+          tabBarOptions={{
+            activeTintColor: 'tomato',
+            inactiveTintColor: 'gray',
+          }}
+        >
+          <Tabs.Screen name="Home" component={HomeStack} />
+          <Tabs.Screen name="Settings" component={SettingsStack} />
+        </Tabs.Navigator>
+        <StatusBar style="dark" />
       </NavigationContainer>
     )
   }
