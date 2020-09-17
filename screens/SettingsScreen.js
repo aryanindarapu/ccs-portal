@@ -12,7 +12,7 @@ export default function SettingsScreen({ navigation }) {
         <SettingsList.Item
           itemWidth={50}
           title='Change Roles'
-          onPress={() => navigation.navigate('EditSchoolsScreen')}
+          onPress={() => navigation.navigate('RoleScreen')}
         />
         <SettingsList.Item
           itemWidth={50}

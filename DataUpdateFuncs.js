@@ -8,7 +8,7 @@ export function dataUpdate(newSchool) {
         schoolInfo: {
           color: '#ffc324',
           url: 'https://www.ccs.k12.in.us/chs',
-          cal: 'https://www.ccs.k12.in.us/chs/about/calendar',
+          cal: 'https://www.ccs.k12.in.us/chs/about/calendar/calendar-grid?element_override=11442&cal_date=2020-09-16',
           isWcOne: true,
           wcOneUrl: 'https://www.ccs.k12.in.us/chs-lunch-menu',
           isWcTwo: true,

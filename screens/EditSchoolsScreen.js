@@ -6,7 +6,7 @@ import Accordion from 'react-native-collapsible/Accordion';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-community/async-storage';
 
-import { dataUp, schools, pushData } from '../IconData';
+import { dataUp, schools } from '../IconData';
 import { pullData } from './HomeScreen';
 import { dataUpdate } from '../DataUpdateFuncs';
 import { SchoolSwitch } from '../SchoolSwitch';
@@ -42,7 +42,6 @@ export default class EditSchoolsScreen extends React.Component {
       const jsonValueSchool = await AsyncStorage.getItem('@test11')
       jsonValueData != null ? this.setState({ dataUp: JSON.parse(jsonValueData)}) : this.state.dataUp
       jsonValueSchool != null ? this.setState({ schools: JSON.parse(jsonValueSchool)}) : this.state.schools
-      // return jsonValue != null ? JSON.parse(jsonValue) : null
     } catch (error) {
       alert('failed to fetch settings')
     }
@@ -111,7 +110,6 @@ export default class EditSchoolsScreen extends React.Component {
       }, () => {
           this.storeData(this.state.dataUp, this.state.schools)
           pullData(this.state.dataUp)
-          pushData(this.state.dataUp, this.state.schools)
         }  
       )
     } else {
@@ -121,7 +119,6 @@ export default class EditSchoolsScreen extends React.Component {
       }, () => {
           this.storeData(this.state.dataUp, this.state.schools)
           pullData(this.state.dataUp)
-          pushData(this.state.dataUp, this.state.schools)
         }
       )
     }

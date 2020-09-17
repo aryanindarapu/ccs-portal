@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions, Image, TouchableOpacity, Button } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Image, TouchableOpacity } from 'react-native';
 import Constants from 'expo-constants';
 import Carousel from 'react-native-snap-carousel';
 import AppLink from 'react-native-app-link';
@@ -7,7 +7,7 @@ import { Octicons } from '@expo/vector-icons';
 import FlipCard from 'react-native-flip-card';
 import AsyncStorage from '@react-native-community/async-storage';
 
-import { dataUp, dataDown } from '../IconData';
+import { dataUp, dataDownParents, dataDownStudents } from '../IconData';
 
 const SLIDER_WIDTH = Dimensions.get('window').width;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.5);
@@ -18,16 +18,25 @@ export function pullData(data) {
   this.setState({dataUp: data})
 }
 
+export function getRole(role) {
+  if (role) {
+    this.setState({dataDown: dataDownStudents})
+  } else {
+    this.setState({dataDown: dataDownParents})
+  }
+}
+
 export default class HomeScreen extends React.Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.state = {
       index: 0,
       dataUp,
-      dataDown
+      dataDown: dataDownParents
     }
     
     pullData = pullData.bind(this)
+    getRole = getRole.bind(this)
   }
 
   componentDidMount() {
@@ -39,7 +48,12 @@ export default class HomeScreen extends React.Component {
       console.log("reading data on HS")
       const jsonValue = await AsyncStorage.getItem('@test3')
       this.setState({ dataUp: JSON.parse(jsonValue)})
-      // return jsonValue != null ? JSON.parse(jsonValue) : null
+      const encVal = await AsyncStorage.getItem('@roleTest')
+      if (encVal == 'p') {
+        this.setState({ dataDown: dataDownParents })
+      } else {
+        this.setState({ dataDown: dataDownStudents })
+      }
     } catch (error) {
       alert('failed to fetch settings')
     }
@@ -47,7 +61,7 @@ export default class HomeScreen extends React.Component {
 
   iconClicked = data => {
     if (data.key == 'add') {
-      return () => this.props.navigation.navigate('EditSchoolsScreen')
+      return () => this.props.navigation.navigate('Settings', { screen: 'EditSchoolsScreen' })
     } else if (data.key == 'app') {
       return () => AppLink.maybeOpenURL(data.url, { appName: data.appName, appStoreId: data.appStoreId, playStoreId: data.playStoreId}).then(() => {
         console.log("testing worked")
@@ -61,7 +75,6 @@ export default class HomeScreen extends React.Component {
 
   _renderItemUp = ({ item }) => {
     let path = ''
-    console.log(item.key)
     switch (item.key) {
       case 'ccs':
         path = require('../assets/schools/ccs.png')
@@ -156,7 +169,7 @@ export default class HomeScreen extends React.Component {
     let text = ""
     switch (item.name) {
       case "Canvas Parent":
-        url = require('../assets/canvasBack.png')
+        url = require('../assets/canvasPBack.png')
         text = "Receive alerts for student activity."
         break
       case "PowerSchool":

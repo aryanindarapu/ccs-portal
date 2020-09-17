@@ -21,10 +21,10 @@ export let dataUp = [
   }
 ]
 
-export const dataDown = [
+export const dataDownParents = [
   {
     key: 'app',
-    path: require('./assets/canvas.png'),
+    path: require('./assets/canvasP.jpg'),
     name: 'Canvas Parent',
     url: 'https://apps.apple.com/us/app/canvas-parent/id1097996698',
     appName: 'Canvas Parent',
@@ -54,6 +54,39 @@ export const dataDown = [
   }, 
   {
     key: 'app',
+    path: require('./assets/remind.png'),
+    name: 'Remind',
+    url: 'https://apps.apple.com/us/app/remind-school-communication/id522826277',
+    appName: 'Remind: School Communication',
+    appStoreId: '522826277',
+    playStoreId: 'com.remind101',
+    flip: false
+  }
+]
+
+export const dataDownStudents = [
+  {
+    key: 'app',
+    path: require('./assets/canvasS.png'),
+    name: 'Canvas Student',
+    url: 'https://apps.apple.com/us/app/canvas-student/id480883488',
+    appName: 'Canvas Student',
+    appStoreId: '480883488',
+    playStoreId: 'com.instructure.candroid',
+    flip: false
+  }, 
+  {
+    key: 'app',
+    path: require('./assets/powerschool.png'),
+    name: 'PowerSchool',
+    url: 'https://apps.apple.com/us/app/powerschool-mobile/id973741088',
+    appName: 'PowerSchool Mobile',
+    appStoreId: '973741088',
+    playStoreId: 'com.powerschool.portal',
+    flip: false
+  },  
+  {
+    key: 'app',
     path: require('./assets/stopit.png'),
     name: 'STOPit',
     url: 'https://apps.apple.com/us/app/stopit-app/id719179764',
@@ -73,6 +106,7 @@ export const dataDown = [
     flip: false
   }
 ]
+
 
 export let schools = [
   {
@@ -166,8 +200,3 @@ export let schools = [
     checked: false
   },
 ]
-
-export const pushData = (data, school) => {
-  dataUp = data
-  schools = school
-}

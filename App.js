@@ -9,10 +9,13 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import HomeScreen from './screens/HomeScreen';
-import SettingsScreen from './screens/SettingsScreen';
 import SchoolInfoScreen from './screens/SchoolInfoScreen';
 import AppInfoScreen from './screens/AppInfoScreen';
+import RenderScreen from './screens/RenderScreen';
+
+import SettingsScreen from './screens/SettingsScreen';
 import EditSchoolsScreen from './screens/EditSchoolsScreen';
+import RoleScreen from './screens/RoleScreen';
 
 const Stack = createStackNavigator()
 const SetStack = createStackNavigator()
@@ -44,6 +47,13 @@ function HomeStack() {
         })}
       />
       <Stack.Screen 
+        name="RenderScreen"
+        component={RenderScreen}
+        options = {{
+          title: ""
+        }}
+      />
+      <Stack.Screen 
         name="AppInfoScreen"
         component={AppInfoScreen}
         options = {{
@@ -62,6 +72,13 @@ function SettingsStack() {
         component={SettingsScreen}
         options = {{
           title: 'Settings'
+        }}
+      />
+      <SetStack.Screen
+        name="RoleScreen"
+        component={RoleScreen}
+        options = {{
+          title: 'Change Role'
         }}
       />
       <SetStack.Screen
@@ -118,6 +135,7 @@ export default class App extends React.Component {
           <Tabs.Screen name="Home" component={HomeStack} />
           <Tabs.Screen name="Settings" component={SettingsStack} />
         </Tabs.Navigator>
+
         <StatusBar style="dark" />
       </NavigationContainer>
     )

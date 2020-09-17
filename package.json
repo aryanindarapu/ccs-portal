@@ -33,7 +33,8 @@
     "react-native-screens": "~2.9.0",
     "react-native-settings-list": "^1.8.0",
     "react-native-snap-carousel": "^4.0.0-beta.5",
-    "react-native-web": "~0.11.7"
+    "react-native-web": "~0.11.7",
+    "react-native-webview": "9.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
