@@ -46,9 +46,9 @@ export default class HomeScreen extends React.Component {
   readData = async () => {
     try {
       console.log("reading data on HS")
-      const jsonValue = await AsyncStorage.getItem('@test3')
+      const jsonValue = await AsyncStorage.getItem('@dataUp_key')
       this.setState({ dataUp: JSON.parse(jsonValue)})
-      const encVal = await AsyncStorage.getItem('@roleTest')
+      const encVal = await AsyncStorage.getItem('@role_key')
       if (encVal == 'p') {
         this.setState({ dataDown: dataDownParents })
       } else {
@@ -210,7 +210,7 @@ export default class HomeScreen extends React.Component {
           </View>
 
           <View style={{justifyContent: 'center', alignItems: 'center'}}>
-            <Image source={url} style={styles.images} />
+            <Image src={url} style={styles.images} />
             <Octicons name='info' size={32} style={styles.icon} onPress={() => this.flipCard({item})} />
             <Text style={styles.cardText}>{text}</Text>
             <TouchableOpacity 

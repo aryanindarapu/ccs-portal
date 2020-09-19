@@ -107,7 +107,6 @@ export const dataDownStudents = [
   }
 ]
 
-
 export let schools = [
   {
     key: 'chs',

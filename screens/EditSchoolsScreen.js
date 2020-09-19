@@ -26,8 +26,8 @@ export default class EditSchoolsScreen extends React.Component {
     try {
       const jsonValueData = JSON.stringify(data)
       const jsonValueSchool = JSON.stringify(school)
-      await AsyncStorage.setItem('@test3', jsonValueData)
-      await AsyncStorage.setItem('@test11', jsonValueSchool)
+      await AsyncStorage.setItem('@dataUp_key', jsonValueData)
+      await AsyncStorage.setItem('@school_key', jsonValueSchool)
 
       console.log("saving data")
     } catch (error) {
@@ -38,9 +38,9 @@ export default class EditSchoolsScreen extends React.Component {
   readData = async () => {
     try {
       console.log("reading data")
-      const jsonValueData = await AsyncStorage.getItem('@test3')
-      const jsonValueSchool = await AsyncStorage.getItem('@test11')
-      jsonValueData != null ? this.setState({ dataUp: JSON.parse(jsonValueData)}) : this.state.dataUp
+      const jsonValueData = await AsyncStorage.getItem('@dataUp_key')
+      const jsonValueSchool = await AsyncStorage.getItem('@school_key')
+      jsonValueData != null ? this.setState({ dataUp: JSON.parse(jsonValueData)}) : this.setState({ dataUp })
       jsonValueSchool != null ? this.setState({ schools: JSON.parse(jsonValueSchool)}) : this.state.schools
     } catch (error) {
       alert('failed to fetch settings')

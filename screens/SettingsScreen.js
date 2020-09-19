@@ -28,7 +28,12 @@ export default function SettingsScreen({ navigation }) {
           itemWidth={50}
           title='About'
           onPress={() => Alert.alert('Icon Example Pressed')}
-        />       
+        />
+        <SettingsList.Item
+          itemWidth={50}
+          title='Help'
+          onPress={() => Alert.alert('Icon Example Pressed')}
+        /> 
       </SettingsList>
     </View>
   )

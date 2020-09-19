@@ -4,6 +4,7 @@ import { Switch } from 'react-native-gesture-handler';
 import { View } from 'react-native-animatable';
 import AsyncStorage from '@react-native-community/async-storage';
 
+import { setCal } from '../App';
 import { getRole } from './HomeScreen';
 
 export default class RoleScreen extends React.Component {
@@ -18,7 +19,7 @@ export default class RoleScreen extends React.Component {
   storeData = async (value) => {
     try {
       const encVal = value ? 's' : 'p'
-      await AsyncStorage.setItem('@roleTest', encVal)
+      await AsyncStorage.setItem('@role_key', encVal)
     } catch (error) {
       alert(error.message)
     }
@@ -26,7 +27,7 @@ export default class RoleScreen extends React.Component {
 
   readData = async () => {
     try {
-      const encVal = await AsyncStorage.getItem('@roleTest')
+      const encVal = await AsyncStorage.getItem('@role_key')
       if (encVal == 'p') {
         this.setState({ isEnabled: false })
       } else {
@@ -43,6 +44,7 @@ export default class RoleScreen extends React.Component {
   toggle = () => {
     this.setState(prevState => ({ isEnabled: !prevState.isEnabled }), () => { 
       getRole(this.state.isEnabled)
+      setCal(this.state.isEnabled)
       this.storeData(this.state.isEnabled)
     })
   }

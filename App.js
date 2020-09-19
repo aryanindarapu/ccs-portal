@@ -7,6 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import HomeScreen from './screens/HomeScreen';
 import SchoolInfoScreen from './screens/SchoolInfoScreen';
@@ -16,6 +17,7 @@ import RenderScreen from './screens/RenderScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import EditSchoolsScreen from './screens/EditSchoolsScreen';
 import RoleScreen from './screens/RoleScreen';
+import PlannerScreen from './screens/PlannerScreen';
 
 const Stack = createStackNavigator()
 const SetStack = createStackNavigator()
@@ -92,9 +94,37 @@ function SettingsStack() {
   )
 }
 
+export function setCal(calEnabled) {
+  this.setState({ calEnabled })
+}
+
 export default class App extends React.Component {
-  state = {
-    isReady: false
+  constructor() {
+    super()
+    this.state = {
+      isReady: false,
+      calEnabled: false
+    }
+
+    setCal = setCal.bind(this)
+  }
+
+  componentDidMount() {
+    this.readData()
+  }
+
+  readData = async () => {
+    try {
+      const encVal = await AsyncStorage.getItem('@role_key')
+      console.log(encVal)
+      if (encVal == 'p') {
+        this.setState({ calEnabled: false })
+      } else {
+        this.setState({ calEnabled: true })
+      }
+    } catch (error) {
+      alert(error)
+    }
   }
 
   render() {
@@ -105,7 +135,7 @@ export default class App extends React.Component {
           onFinish={() => this.setState({ isReady: true })}
           onError={console.warn}
         />
-      ); 
+      )
     }
 
     return (
@@ -119,6 +149,8 @@ export default class App extends React.Component {
                 iconName = focused
                   ? 'home'
                   : 'home-outline';
+              } else if (route.name === 'Calendar') {
+                iconName = focused ? 'calendar' : 'calendar-outline';
               } else if (route.name === 'Settings') {
                 iconName = focused ? 'settings' : 'settings-outline';
               }
@@ -133,6 +165,7 @@ export default class App extends React.Component {
           }}
         >
           <Tabs.Screen name="Home" component={HomeStack} />
+          { this.state.calEnabled && (<Tabs.Screen name="Planner" component={PlannerScreen} />)}
           <Tabs.Screen name="Settings" component={SettingsStack} />
         </Tabs.Navigator>
 
