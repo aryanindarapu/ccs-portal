@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text } from 'react-native';
+import React from 'react';
+import { AsyncStorage, StyleSheet, Text } from 'react-native';
 import { Switch } from 'react-native-gesture-handler';
 import { View } from 'react-native-animatable';
-import AsyncStorage from '@react-native-community/async-storage';
 
 import { setCal } from '../App';
 import { getRole } from './HomeScreen';
@@ -28,16 +27,12 @@ export default class RoleScreen extends React.Component {
   readData = async () => {
     try {
       const encVal = await AsyncStorage.getItem('@role_key')
-      if (encVal == 'p') {
-        this.setState({ isEnabled: false })
-      } else {
-        this.setState({ isEnabled: true })
-      }
+      encVal == 'p' ? this.setState({ isEnabled: false }) : this.setState({ isEnabled: true })
       if(value !== null) {
         // isEnabled = value
       }
-    } catch(e) {
-      // error reading value
+    } catch(error) {
+      alert(error)
     }
   }
 

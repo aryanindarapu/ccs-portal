@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { AsyncStorage, StyleSheet } from 'react-native';
 import { AppLoading } from 'expo';
 import { Asset } from 'expo-asset';
 import { StatusBar } from 'expo-status-bar';
@@ -7,7 +7,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import AsyncStorage from '@react-native-community/async-storage';
 
 import HomeScreen from './screens/HomeScreen';
 import SchoolInfoScreen from './screens/SchoolInfoScreen';
@@ -21,6 +20,7 @@ import PlannerScreen from './screens/PlannerScreen';
 
 const Stack = createStackNavigator()
 const SetStack = createStackNavigator()
+const PlanStack = createStackNavigator()
 const Tabs = createBottomTabNavigator()
 
 function HomeStack() {
@@ -63,6 +63,20 @@ function HomeStack() {
         }}
       />
     </Stack.Navigator>
+  )
+}
+
+function PlannerStack() {
+  return (
+    <PlanStack.Navigator initialRouteName="PlannerScreen">
+      <PlanStack.Screen
+        name="PlannerScreen"
+        component={PlannerScreen}
+        options = {{
+          title: 'Planner'
+        }}
+      />
+    </PlanStack.Navigator>
   )
 }
 
@@ -117,11 +131,7 @@ export default class App extends React.Component {
     try {
       const encVal = await AsyncStorage.getItem('@role_key')
       console.log(encVal)
-      if (encVal == 'p') {
-        this.setState({ calEnabled: false })
-      } else {
-        this.setState({ calEnabled: true })
-      }
+      encVal == 'p' ? this.setState({ calEnabled: false }) : this.setState({ calEnabled: true })
     } catch (error) {
       alert(error)
     }
@@ -149,7 +159,7 @@ export default class App extends React.Component {
                 iconName = focused
                   ? 'home'
                   : 'home-outline';
-              } else if (route.name === 'Calendar') {
+              } else if (route.name === 'Planner') {
                 iconName = focused ? 'calendar' : 'calendar-outline';
               } else if (route.name === 'Settings') {
                 iconName = focused ? 'settings' : 'settings-outline';
@@ -165,7 +175,7 @@ export default class App extends React.Component {
           }}
         >
           <Tabs.Screen name="Home" component={HomeStack} />
-          { this.state.calEnabled && (<Tabs.Screen name="Planner" component={PlannerScreen} />)}
+          { this.state.calEnabled && (<Tabs.Screen name="Planner" component={PlannerStack} />)}
           <Tabs.Screen name="Settings" component={SettingsStack} />
         </Tabs.Navigator>
 

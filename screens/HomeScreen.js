@@ -1,11 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions, Image, TouchableOpacity } from 'react-native';
+import { AsyncStorage, StyleSheet, Text, View, Dimensions, Image, TouchableOpacity } from 'react-native';
 import Constants from 'expo-constants';
 import Carousel from 'react-native-snap-carousel';
 import AppLink from 'react-native-app-link';
 import { Octicons } from '@expo/vector-icons';
 import FlipCard from 'react-native-flip-card';
-import AsyncStorage from '@react-native-community/async-storage';
 
 import { dataUp, dataDownParents, dataDownStudents } from '../IconData';
 

@@ -1,10 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, ScrollView, View, TouchableOpacity } from 'react-native';
+import { AsyncStorage, StyleSheet, Text, ScrollView, View, TouchableOpacity } from 'react-native';
 import Constants from 'expo-constants';
 import * as Animatable from 'react-native-animatable';
 import Accordion from 'react-native-collapsible/Accordion';
 import { Ionicons } from '@expo/vector-icons';
-import AsyncStorage from '@react-native-community/async-storage';
 
 import { dataUp, schools } from '../IconData';
 import { pullData } from './HomeScreen';
