@@ -16,7 +16,9 @@ import RenderScreen from './screens/RenderScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import EditSchoolsScreen from './screens/EditSchoolsScreen';
 import RoleScreen from './screens/RoleScreen';
+
 import PlannerScreen from './screens/PlannerScreen';
+import EventViewAddScreen from './screens/EventViewAddScreen';
 
 const Stack = createStackNavigator()
 const SetStack = createStackNavigator()
@@ -74,6 +76,13 @@ function PlannerStack() {
         component={PlannerScreen}
         options = {{
           title: 'Planner'
+        }}
+      />
+      <PlanStack.Screen
+        name="EventViewAddScreen"
+        component={EventViewAddScreen}
+        options = {{
+          title: 'Add Homework'
         }}
       />
     </PlanStack.Navigator>

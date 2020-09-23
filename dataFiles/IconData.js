@@ -1,7 +1,7 @@
 export let dataUp = [
   {
     key: 'ccs',
-    path: require('./assets/schools/ccs.png'),
+    path: require('../assets/schools/ccs.png'),
     name: 'Carmel Clay \nSchools',
     nameFormat: 'Carmel Clay Schools',
     schoolInfo: {
@@ -16,7 +16,7 @@ export let dataUp = [
   },
   {
     key: 'add',
-    path: require('./assets/add.png'),
+    path: require('../assets/add.png'),
     name: 'Add Schools',
   }
 ]
@@ -24,7 +24,7 @@ export let dataUp = [
 export const dataDownParents = [
   {
     key: 'app',
-    path: require('./assets/canvasP.jpg'),
+    path: require('../assets/canvasP.jpg'),
     name: 'Canvas Parent',
     url: 'https://apps.apple.com/us/app/canvas-parent/id1097996698',
     appName: 'Canvas Parent',
@@ -34,7 +34,7 @@ export const dataDownParents = [
   }, 
   {
     key: 'app',
-    path: require('./assets/powerschool.png'),
+    path: require('../assets/powerschool.png'),
     name: 'PowerSchool',
     url: 'https://apps.apple.com/us/app/powerschool-mobile/id973741088',
     appName: 'PowerSchool Mobile',
@@ -44,7 +44,7 @@ export const dataDownParents = [
   },  
   {
     key: 'app',
-    path: require('./assets/ez.png'),
+    path: require('../assets/ez.png'),
     name: 'EZSchoolPay',
     url: 'https://apps.apple.com/us/app/ezschoolpay/id642643721',
     appName: 'EZSchoolPay',
@@ -54,7 +54,7 @@ export const dataDownParents = [
   }, 
   {
     key: 'app',
-    path: require('./assets/remind.png'),
+    path: require('../assets/remind.png'),
     name: 'Remind',
     url: 'https://apps.apple.com/us/app/remind-school-communication/id522826277',
     appName: 'Remind: School Communication',
@@ -67,7 +67,7 @@ export const dataDownParents = [
 export const dataDownStudents = [
   {
     key: 'app',
-    path: require('./assets/canvasS.png'),
+    path: require('../assets/canvasS.png'),
     name: 'Canvas Student',
     url: 'https://apps.apple.com/us/app/canvas-student/id480883488',
     appName: 'Canvas Student',
@@ -77,7 +77,7 @@ export const dataDownStudents = [
   }, 
   {
     key: 'app',
-    path: require('./assets/powerschool.png'),
+    path: require('../assets/powerschool.png'),
     name: 'PowerSchool',
     url: 'https://apps.apple.com/us/app/powerschool-mobile/id973741088',
     appName: 'PowerSchool Mobile',
@@ -87,7 +87,7 @@ export const dataDownStudents = [
   },  
   {
     key: 'app',
-    path: require('./assets/stopit.png'),
+    path: require('../assets/stopit.png'),
     name: 'STOPit',
     url: 'https://apps.apple.com/us/app/stopit-app/id719179764',
     appName: 'STOPit',
@@ -97,7 +97,7 @@ export const dataDownStudents = [
   }, 
   {
     key: 'app',
-    path: require('./assets/remind.png'),
+    path: require('../assets/remind.png'),
     name: 'Remind',
     url: 'https://apps.apple.com/us/app/remind-school-communication/id522826277',
     appName: 'Remind: School Communication',

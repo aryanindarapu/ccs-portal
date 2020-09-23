@@ -5,10 +5,10 @@ import * as Animatable from 'react-native-animatable';
 import Accordion from 'react-native-collapsible/Accordion';
 import { Ionicons } from '@expo/vector-icons';
 
-import { dataUp, schools } from '../IconData';
+import { dataUp, schools } from '../dataFiles/IconData';
 import { pullData } from './HomeScreen';
-import { dataUpdate } from '../DataUpdateFuncs';
-import { SchoolSwitch } from '../SchoolSwitch';
+import { dataUpdate } from '../dataFiles/DataUpdateFuncs';
+import { SchoolSwitch } from '../components/SchoolSwitch';
 
 export default class EditSchoolsScreen extends React.Component {
   state = {

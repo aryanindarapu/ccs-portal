@@ -6,7 +6,7 @@ import AppLink from 'react-native-app-link';
 import { Octicons } from '@expo/vector-icons';
 import FlipCard from 'react-native-flip-card';
 
-import { dataUp, dataDownParents, dataDownStudents } from '../IconData';
+import { dataUp, dataDownParents, dataDownStudents } from '../dataFiles/IconData';
 
 const SLIDER_WIDTH = Dimensions.get('window').width;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.5);

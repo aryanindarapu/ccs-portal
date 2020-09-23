@@ -1,200 +1,59 @@
 import React from 'react';
-import { StyleSheet, Alert, SafeAreaView } from 'react-native';
+import { AsyncStorage, StyleSheet, Alert, SafeAreaView } from 'react-native';
 import Constants from 'expo-constants';
 import WeekView from 'react-native-week-view';
+import moment from 'moment';
 
-import { blueDays, goldDays } from '../schedule';
+import { generateDays, getMonday } from '../dataFiles/generateDays';
 
-const generateDates = (year, month, day, hours, minutes) => {
-  const date = new Date(year, (month - 1), day, hours, minutes, 0, 0)
-  return date
-}
-
-const generateDays = () => {
-  const tempEvents = []
-  let id = 0
-
-  goldDays.forEach(month => {
-    for (let i = 0; i < month.dates.length; i++) {
-      if (month.lateStart[0] == month.dates[i] || month.lateStart[1] == month.dates[i]) {
-        console.log("lateStart")
-        id += 1
-        let tempG1 = {
-          id,
-          description: 'Gold 1',
-          startDate: generateDates(2020, month.month, month.dates[i], 9, 25),
-          endDate: generateDates(2020, month.month, month.dates[i], 10, 41),
-          color: 'gold',
-          todo: ["This is a todo"]
-        }
-
-        id += 1
-        let tempG3 = {
-          id,
-          description: 'Gold 3',
-          startDate: generateDates(2020, month.month, month.dates[i], 12, 18),
-          endDate: generateDates(2020, month.month, month.dates[i], 14, 18),
-          color: 'gold',
-          todo: []
-        }
-
-        id += 1
-        let tempG4 = {
-          id,
-          description: 'Gold 4',
-          startDate: generateDates(2020, month.month, month.dates[i], 14, 28),
-          endDate: generateDates(2020, month.month, month.dates[i], 15, 45),
-          color: 'gold',
-          todo: []
-        }
-
-        tempEvents.push(tempG1, tempG3, tempG4)
-      } else {
-        id += 1
-        let tempG1 = {
-          id,
-          description: 'Gold 1',
-          startDate: generateDates(2020, month.month, month.dates[i], 8, 45),
-          endDate: generateDates(2020, month.month, month.dates[i], 10, 15),
-          color: 'gold',
-          todo: []
-        }
-
-        id += 1
-        let tempG3 = {
-          id,
-          description: 'Gold 3',
-          startDate: generateDates(2020, month.month, month.dates[i], 12, 5),
-          endDate: generateDates(2020, month.month, month.dates[i], 14, 5),
-          color: 'gold',
-          todo: []
-        }
-
-        id += 1
-        let tempG4 = {
-          id,
-          description: 'Gold 4',
-          startDate: generateDates(2020, month.month, month.dates[i], 14, 15),
-          endDate: generateDates(2020, month.month, month.dates[i], 15, 45),
-          color: 'gold',
-          todo: []
-        }
-
-        tempEvents.push(tempG1, tempG3, tempG4)
-      }      
-    }
-  })
-
-  blueDays.forEach(month => {
-    for (let i = 0; i < month.dates.length; i++) {
-      if (month.lateStart[0] == month.dates[i] || month.lateStart[1] == month.dates[i]) {
-        id += 1
-        let tempB1 = {
-          id,
-          description: 'Blue 1',
-          startDate: generateDates(2020, month.month, month.dates[i], 9, 25),
-          endDate: generateDates(2020, month.month, month.dates[i], 10, 41),
-          color: 'blue',
-          todo: []
-        }
-
-        id += 1
-        let tempB2 = {
-          id,
-          description: 'Blue 2',
-          startDate: generateDates(2020, month.month, month.dates[i], 10, 51),
-          endDate: generateDates(2020, month.month, month.dates[i], 12, 8),
-          color: 'blue',
-          todo: []
-        }
-
-        id += 1
-        let tempB3 = {
-          id,
-          description: 'Blue 3',
-          startDate: generateDates(2020, month.month, month.dates[i], 12, 18),
-          endDate: generateDates(2020, month.month, month.dates[i], 14, 18),
-          color: 'blue',
-          todo: []
-        }
-
-        id += 1
-        let tempB4 = {
-          id,
-          description: 'Blue 4',
-          startDate: generateDates(2020, month.month, month.dates[i], 14, 28),
-          endDate: generateDates(2020, month.month, month.dates[i], 15, 45),
-          color: 'blue',
-          todo: []
-        }
-
-        tempEvents.push(tempB1, tempB2, tempB3, tempB4)
-      } else {
-        id += 1
-        let tempB1 = {
-          id,
-          description: 'Blue 1',
-          startDate: generateDates(2020, month.month, month.dates[i], 8, 45),
-          endDate: generateDates(2020, month.month, month.dates[i], 10, 15),
-          color: 'blue',
-          todo: []
-        }
-
-        id += 1
-        let tempB2 = {
-          id,
-          description: 'Blue 2',
-          startDate: generateDates(2020, month.month, month.dates[i], 10, 25),
-          endDate: generateDates(2020, month.month, month.dates[i], 11, 55),
-          color: 'blue',
-          todo: []
-        }
-
-        id += 1
-        let tempB3 = {
-          id,
-          description: 'Blue 3',
-          startDate: generateDates(2020, month.month, month.dates[i], 12, 5),
-          endDate: generateDates(2020, month.month, month.dates[i], 14, 5),
-          color: 'blue',
-          todo: []
-        }
-
-        id += 1
-        let tempB4 = {
-          id,
-          description: 'Blue 4',
-          startDate: generateDates(2020, month.month, month.dates[i], 14, 15),
-          endDate: generateDates(2020, month.month, month.dates[i], 15, 45),
-          color: 'blue',
-          todo: []
-        }
-
-        tempEvents.push(tempB1, tempB2, tempB3, tempB4)
-      }
-    }
-  })
-
-  return tempEvents
+export function getTodoList(days) {
+  this.setState({days})
 }
 
 export default class CalendarScreen extends React.Component {
-  state = {
-    days: generateDays(),
-    selectedDate: new Date(),
+
+  constructor() {
+    super()
+    this.state = {
+      days: [],
+      selectedDate: getMonday(new Date()),
+    }
+
+    getTodoList = getTodoList.bind(this)
   }
 
-  onEventPress = ({id, color, startDate, endDate}) => {
-    Alert.alert(
-      `event ${color} - ${id}`,
-      `start: ${startDate}\nend: ${endDate}`,
-    )
+  componentDidMount() {
+    this.readData()
   }
 
-  // TODO: implement user click on grid area and create event
-  // Not t0o important, can do later
-  onGridClick = (event, startHour) => {
-    Alert.alert(`start hour: ${startHour}`);
+  storeData = async (data) => {
+    // console.log("storing data")
+    try {
+      const jsonValue = JSON.stringify(data)
+      await AsyncStorage.setItem('@test_key_planner', jsonValue)
+    } catch (error) {
+      alert(error.message)
+    }
+  }
+  
+  readData = async () => {
+    try {
+      console.log("reading data")
+      const jsonValueData = await AsyncStorage.getItem('@test_key_planner')
+      jsonValueData != null ? this.setState({ days: JSON.parse(jsonValueData)}) : this.setState({ days: generateDays() }, () => this.storeData(this.state.days))
+    } catch (error) {
+      alert('failed to fetch settings')
+    }
+  }
+
+  formatDate = (date) => {
+    let formattedDate = moment(date).format('dddd, MMMM D')
+    return formattedDate
+  }
+
+  goToScreen = ({id, startDate, description, todos}) => {
+    let formattedDate = this.formatDate(startDate)
+    this.props.navigation.navigate('EventViewAddScreen', {id, date: formattedDate, description, todos, dayList: this.state.days})
   }
 
   render() {
@@ -203,9 +62,9 @@ export default class CalendarScreen extends React.Component {
         <WeekView
           events={this.state.days}
           selectedDate={this.state.selectedDate}
-          numberOfDays={5}
-          onEventPress={this.onEventPress}
-          onGridClick={this.onGridClick}
+          numberOfDays={7}
+          onEventPress={this.goToScreen}
+          // onGridClick={this.onGridClick}
           headerStyle={styles.headerStyle}
           formatDateHeader="ddd, MMM D"
           hoursInDisplay={6}

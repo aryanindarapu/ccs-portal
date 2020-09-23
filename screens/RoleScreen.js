@@ -28,9 +28,6 @@ export default class RoleScreen extends React.Component {
     try {
       const encVal = await AsyncStorage.getItem('@role_key')
       encVal == 'p' ? this.setState({ isEnabled: false }) : this.setState({ isEnabled: true })
-      if(value !== null) {
-        // isEnabled = value
-      }
     } catch(error) {
       alert(error)
     }

@@ -14,10 +14,10 @@ const ActivityIndicatorLoadingView = () => {
 
 export default function RenderScreen ({ route }) {
   const jsInject = `
-window.self.document.body.style.backgroundColor = 'red';
-setTimeout(function() { window.alert('hi') }, 2000);
-  true;
-`
+    window.self.document.body.style.backgroundColor = 'red';
+    setTimeout(function() { window.alert('hi') }, 2000);
+    true;
+  `
 
   return (
     <View style={{ flex: 1 }}>
