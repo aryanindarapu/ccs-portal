@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "CCS Portal",
-    "slug": "ccs-app",
+    "slug": "ccs-portal",
     "description": "Access to all CCS hotspots",
     "privacy": "public",
     "version": "1.0.0",

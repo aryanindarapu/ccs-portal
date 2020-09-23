@@ -3,7 +3,7 @@ import { AsyncStorage, StyleSheet, Text, View, Dimensions, Image, TouchableOpaci
 import Constants from 'expo-constants';
 import Carousel from 'react-native-snap-carousel';
 import AppLink from 'react-native-app-link';
-import { Octicons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import FlipCard from 'react-native-flip-card';
 
 import { dataUp, dataDownParents, dataDownStudents } from '../dataFiles/IconData';
@@ -46,8 +46,9 @@ export default class HomeScreen extends React.Component {
     try {
       console.log("reading data on HS")
       const jsonValue = await AsyncStorage.getItem('@dataUp_key')
-      this.setState({ dataUp: JSON.parse(jsonValue)})
       const encVal = await AsyncStorage.getItem('@role_key')
+
+      jsonValue !== null ? this.setState({ dataUp: JSON.parse(jsonValue)}) : this.setState({ dataUp })
       if (encVal == 'p') {
         this.setState({ dataDown: dataDownParents })
       } else {
@@ -168,23 +169,27 @@ export default class HomeScreen extends React.Component {
     let text = ""
     switch (item.name) {
       case "Canvas Parent":
-        url = require('../assets/canvasPBack.png')
+        url = require('../assets/appIcons/canvasPBack.png')
         text = "Receive alerts for student activity."
         break
+      case "Canvas Student":
+        url = require('../assets/appIcons/canvasSBack.png')
+        text = "View and access your courses."
+        break
       case "PowerSchool":
-        url = require('../assets/powerschoolBack.png')
+        url = require('../assets/appIcons/powerschoolBack.png')
         text = "Real-time student performance."
         break
       case "EZSchoolPay":
-        url = require('../assets/ezBack.png')
+        url = require('../assets/appIcons/ezBack.png')
         text = "Easy way to pay for school meals."
         break
       case "STOPit":
-        url = require('../assets/stopitBack.png')
+        url = require('../assets/appIcons/stopitBack.png')
         text = "Anonymous reporting."
         break
       case "Remind":
-        url = require('../assets/remindBack.png')
+        url = require('../assets/appIcons/remindBack.png')
         text = "Notifications from teachers."
         break
     }
@@ -209,8 +214,8 @@ export default class HomeScreen extends React.Component {
           </View>
 
           <View style={{justifyContent: 'center', alignItems: 'center'}}>
-            <Image src={url} style={styles.images} />
-            <Octicons name='info' size={32} style={styles.icon} onPress={() => this.flipCard({item})} />
+            <Image source={url} style={styles.images} />
+            <Ionicons name='ios-information-circle-outline' size={32} style={styles.icon} onPress={() => this.flipCard({item})} />
             <Text style={styles.cardText}>{text}</Text>
             <TouchableOpacity 
               style={{ position: 'absolute', justifyContent: 'center', alignItems: 'center'}}
