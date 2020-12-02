@@ -17,7 +17,7 @@ export let dataUp = [
   {
     key: 'add',
     path: require('../assets/add.png'),
-    name: 'Add Schools',
+    name: 'Edit Schools',
   }
 ]
 

@@ -208,7 +208,7 @@ export default class HomeScreen extends React.Component {
           <View>
             <TouchableOpacity activeOpacity={activeOpacity} onPress={this.iconClicked(item)}>
               <Image source={item.path} style={styles.images} />
-              <Octicons name='info' size={32} style={styles.icon} onPress={() => this.flipCard({item})}/>
+              <Ionicons name='ios-information-circle-outline' size={32} style={styles.icon} onPress={() => this.flipCard({item})}/>
               <Text style={styles.text}>{item.name}</Text>
             </TouchableOpacity>
           </View>

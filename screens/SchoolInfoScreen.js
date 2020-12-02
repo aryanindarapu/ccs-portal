@@ -30,7 +30,7 @@ export default function SchoolInfoScreen({ navigation, route }) {
         <Col>
           <Row size={2}>
             <TouchableOpacity activeOpacity={0.5} style={styles.container} onPress={() => navigation.navigate("RenderScreen", {url: route.params.data.schoolInfo.cal})}>
-              <AntDesign name="calendar" size={SLIDER_WIDTH} color={SCHOOL_COLOR} />
+              <MaterialCommunityIcons name="calendar" size={SLIDER_WIDTH} color={SCHOOL_COLOR} />
               <Text style={styles.text}>Calendar</Text>
             </TouchableOpacity>
           </Row>

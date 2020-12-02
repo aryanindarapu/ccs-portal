@@ -2,6 +2,7 @@ import React from 'react';
 import { AsyncStorage, StyleSheet, Text } from 'react-native';
 import { Switch } from 'react-native-gesture-handler';
 import { View } from 'react-native-animatable';
+import RNPickerSelect from 'react-native-picker-select';
 
 import { setCal } from '../App';
 import { getRole } from './HomeScreen';
@@ -53,6 +54,16 @@ export default class RoleScreen extends React.Component {
           ios_backgroundColor="#008ee2"
         />
         <Text style={styles.text}>Student</Text>
+        {this.state.isEnabled && 
+          <RNPickerSelect
+            onValueChange={(value) => console.log(value)}
+            items={[
+                { label: 'Football', value: 'football' },
+                { label: 'Baseball', value: 'baseball' },
+                { label: 'Hockey', value: 'hockey' },
+            ]}
+          />
+        }
       </View>
     )
   }

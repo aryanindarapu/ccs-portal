@@ -13,20 +13,20 @@ const ActivityIndicatorLoadingView = () => {
 }
 
 export default function RenderScreen ({ route }) {
-  const jsInject = `
-    window.self.document.body.style.backgroundColor = 'red';
-    setTimeout(function() { window.alert('hi') }, 2000);
-    true;
-  `
+  // const jsInject = `
+  //   window.self.document.body.style.backgroundColor = 'red';
+  //   setTimeout(function() { window.alert('hi') }, 2000);
+  //   true;
+  // `
 
   return (
     <View style={{ flex: 1 }}>
       <WebView 
         originWhitelist={['*']}
-        source={{ uri: 'https://github.com/react-native-community/react-native-webview' }}
+        source={{ uri: route.params.url }}
         renderLoading={ActivityIndicatorLoadingView} 
         startInLoadingState={true}
-        injectedJavaScript={jsInject}
+        // injectedJavaScript={jsInject}
       />
     </View>
   )
